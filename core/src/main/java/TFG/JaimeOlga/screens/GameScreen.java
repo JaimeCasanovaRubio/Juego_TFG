@@ -47,7 +47,7 @@ public class GameScreen implements Screen {
         itemController = new ItemController();
         mapController = new MapController();
         enemyController = new EnemyController();
-        inputController = new InputController(player);
+        inputController = new InputController(player, game);
 
         // Cargar el mapa de Tiled
         mapController.loadMap("maps/prueba1.tmx");

@@ -3,12 +3,15 @@ package TFG.JaimeOlga.controllers;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import TFG.JaimeOlga.entities.Player;
+import TFG.JaimeOlga.Main;
 
 public class InputController implements InputProcessor {
     private Player player;
+    private Main game;
 
-    public InputController(Player player) {
+    public InputController(Player player, Main game) {
         this.player = player;
+        this.game = game;
     }
 
     @Override
@@ -23,6 +26,11 @@ public class InputController implements InputProcessor {
             player.setDown(true);
         } else if (keycode == Keys.J) {
             player.attack(); // Inicia el ataque con su timer
+        }
+        if (keycode == Keys.ESCAPE) {
+            if (game.getScreen() == game.gameScreen) {
+                game.setScreen(game.settingsMenu);
+            }
         }
         return true;
     }

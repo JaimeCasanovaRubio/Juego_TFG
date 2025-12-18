@@ -2,25 +2,23 @@ package TFG.JaimeOlga.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import TFG.JaimeOlga.Main;
-
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
-public class MenuScreen implements Screen {
+import TFG.JaimeOlga.Main;
 
+public class SettingsMenu implements Screen {
     private Main game;
     private BitmapFont font;
 
-    public MenuScreen(Main game) {
+    public SettingsMenu(Main game) {
         this.game = game;
         this.font = new BitmapFont();
-
     }
 
     @Override
     public void show() {
-        // Se llama cuando la pantalla se muestra
+
     }
 
     @Override
@@ -33,31 +31,30 @@ public class MenuScreen implements Screen {
         font.draw(game.batch, "RESTAURANTE ALIENIGENA", 100, 400);
         font.draw(game.batch, "Pulsa ENTER para jugar", 100, 300);
         game.batch.end();
-
-        // Detectar input para cambiar de pantalla
-        if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.ENTER)) {
-            game.changeScreen(game.gameScreen);
-        }
     }
 
     @Override
     public void resize(int width, int height) {
+
     }
 
     @Override
     public void pause() {
+
     }
 
     @Override
     public void resume() {
+
     }
 
     @Override
     public void hide() {
+
     }
 
     @Override
     public void dispose() {
-        font.dispose();
+
     }
 }
