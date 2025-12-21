@@ -35,23 +35,23 @@
 21,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,23
 </data>
  </layer>
- <objectgroup id="7" name="collision" visible="0">
+ <objectgroup id="7" name="collision">
   <object id="15" x="2.66667" y="61.3333" width="57.3333" height="897.333"/>
   <object id="17" x="60" y="896" width="1217.33" height="62.6667"/>
   <object id="18" x="1216" y="1.33333" width="61.3333" height="890.667"/>
   <object id="19" x="1.33333" y="-1.33333" width="1212" height="61.3333"/>
  </objectgroup>
- <objectgroup id="8" name="enemies" visible="0">
+ <objectgroup id="8" name="enemies">
   <object id="34" x="888.103" y="573.354" width="25.3333" height="44">
    <properties>
-    <property name="detectionRange" value="100"/>
+    <property name="detectionRange" type="int" value="100"/>
     <property name="patrolRange" type="int" value="300"/>
     <property name="type" value="ground"/>
    </properties>
   </object>
   <object id="35" x="332.019" y="635.702" width="25.3333" height="44">
    <properties>
-    <property name="detectionRange" value="50"/>
+    <property name="detectionRange" type="int" value="50"/>
     <property name="patrolRange" type="int" value="300"/>
     <property name="type" value="ground"/>
    </properties>

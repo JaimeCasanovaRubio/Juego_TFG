@@ -1,17 +1,13 @@
 package TFG.JaimeOlga.screens.gameScreens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import TFG.JaimeOlga.Main;
-import TFG.JaimeOlga.controllers.CollisionManager;
 import TFG.JaimeOlga.controllers.EnemyController;
 import TFG.JaimeOlga.controllers.InputController;
 import TFG.JaimeOlga.controllers.ItemController;
@@ -32,10 +28,6 @@ public class OniricForestScreen implements Screen {
     private EnemyController enemyController;
     private InputController inputController;
 
-    // DEBUG
-    private ShapeRenderer shapeRenderer;
-    private boolean debugMode = false;
-
     // Resolución del juego (acordar con Olga)
     public static final int GAME_WIDTH = 1280;
     public static final int GAME_HEIGHT = 720;
@@ -52,9 +44,6 @@ public class OniricForestScreen implements Screen {
 
         // Cargar el mapa de Tiled
         mapController.loadMap("maps/prueba1.tmx");
-
-        // Debug renderer
-        shapeRenderer = new ShapeRenderer();
 
         // Configurar cámara y viewport
         camera = new OrthographicCamera();
@@ -94,11 +83,6 @@ public class OniricForestScreen implements Screen {
     }
 
     public void update(float delta) {
-        // Toggle debug con F3
-        if (Gdx.input.isKeyJustPressed(Keys.F3)) {
-            debugMode = !debugMode;
-            System.out.println("Debug mode: " + (debugMode ? "ON" : "OFF"));
-        }
 
         // Actualizar enemigos (cargados desde Tiled)
         enemyController.update(delta, mapController.getCollisionManager(), player.getHitbox());
