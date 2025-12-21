@@ -18,7 +18,14 @@ public class SettingsMenu implements Screen {
 
     @Override
     public void show() {
+        // Limpiar pantalla con color oscuro
+        Gdx.gl.glClearColor(0.1f, 0.1f, 0.15f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        game.batch.begin();
+        font.draw(game.batch, "RESTAURANTE ALIENIGENA", 100, 400);
+        font.draw(game.batch, "Pulsa ENTER para jugar", 100, 300);
+        game.batch.end();
     }
 
     @Override
