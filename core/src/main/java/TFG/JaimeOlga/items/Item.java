@@ -54,6 +54,8 @@ public abstract class Item {
      */
     public abstract void applyEffect(Main game);
 
+    public abstract void applyEffect(Main game, Player player);
+
     /**
      * Llamado cuando el jugador colisiona con el item.
      */
@@ -61,6 +63,7 @@ public abstract class Item {
         if (!collected) {
             applyEffect(player);
             applyEffect(game);
+            applyEffect(game, player);
             collected = true;
             System.out.println("✓ Item recogido!");
         }
@@ -88,4 +91,5 @@ public abstract class Item {
             texture.dispose();
         }
     }
+
 }

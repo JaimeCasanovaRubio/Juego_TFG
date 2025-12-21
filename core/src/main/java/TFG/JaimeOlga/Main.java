@@ -4,9 +4,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import TFG.JaimeOlga.screens.BaseScreen;
+import TFG.JaimeOlga.entities.Player;
 import TFG.JaimeOlga.screens.MenuScreen;
 import TFG.JaimeOlga.screens.SettingsMenu;
+import TFG.JaimeOlga.screens.gameScreens.BaseScreen;
 import TFG.JaimeOlga.screens.gameScreens.OniricForestScreen;
 
 /**
@@ -15,6 +16,7 @@ import TFG.JaimeOlga.screens.gameScreens.OniricForestScreen;
  */
 public class Main extends Game {
     public SpriteBatch batch;
+    public Player player;
 
     // Screens (se crean una sola vez y se reutilizan)
     public MenuScreen menuScreen;
@@ -24,11 +26,13 @@ public class Main extends Game {
 
     @Override
     public void create() {
+
         batch = new SpriteBatch();
+        player = new Player(200, 300);
         menuScreen = new MenuScreen(this);
-        oniricForestScreen = new OniricForestScreen(this);
+        oniricForestScreen = new OniricForestScreen(this, player);
         settingsMenu = new SettingsMenu(this);
-        baseScreen = new BaseScreen(this);
+        baseScreen = new BaseScreen(this, player);
         setScreen(menuScreen);
     }
 

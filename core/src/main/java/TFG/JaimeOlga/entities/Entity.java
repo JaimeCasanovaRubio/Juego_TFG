@@ -155,10 +155,6 @@ public class Entity {
         }
     }
 
-    public Rectangle getHitbox() {
-        return hitbox;
-    }
-
     // Gestión daño
     public void takeDamage(int damage) {
         if (!invincible) {
@@ -171,11 +167,157 @@ public class Entity {
         }
     }
 
-    public void update(float delta, CollisionManager collisionManager, Rectangle playerHitbox) {
+    // Getters y setters
+    public ArrayList<Animation<TextureRegion>> getAnimations() {
+        return animations;
+    }
+
+    public void setAnimations(ArrayList<Animation<TextureRegion>> animations) {
+        this.animations = animations;
+    }
+
+    public ArrayList<Texture> getTextures() {
+        return textures;
+    }
+
+    public void setTextures(ArrayList<Texture> textures) {
+        this.textures = textures;
+    }
+
+    public int getCurrentAnimation() {
+        return currentAnimation;
+    }
+
+    public void setCurrentAnimation(int currentAnimation) {
+        this.currentAnimation = currentAnimation;
+    }
+
+    public float getStateTime() {
+        return stateTime;
+    }
+
+    public void setStateTime(float stateTime) {
+        this.stateTime = stateTime;
+    }
+
+    public boolean isMovingRight() {
+        return movingRight;
+    }
+
+    public void setMovingRight(boolean movingRight) {
+        this.movingRight = movingRight;
+    }
+
+    public boolean isMovingUp() {
+        return movingUp;
+    }
+
+    public void setMovingUp(boolean movingUp) {
+        this.movingUp = movingUp;
+    }
+
+    public Rectangle getHitbox() {
+        return hitbox;
+    }
+
+    public void setHitbox(Rectangle hitbox) {
+        this.hitbox = hitbox;
+    }
+
+    public float getHitboxOffsetX() {
+        return hitboxOffsetX;
+    }
+
+    public void setHitboxOffsetX(float hitboxOffsetX) {
+        this.hitboxOffsetX = hitboxOffsetX;
+    }
+
+    public float getHitboxOffsetY() {
+        return hitboxOffsetY;
+    }
+
+    public void setHitboxOffsetY(float hitboxOffsetY) {
+        this.hitboxOffsetY = hitboxOffsetY;
+    }
+
+    public float getxPosition() {
+        return xPosition;
+    }
+
+    public void setxPosition(float xPosition) {
+        this.xPosition = xPosition;
+    }
+
+    public float getyPosition() {
+        return yPosition;
+    }
+
+    public void setyPosition(float yPosition) {
+        this.yPosition = yPosition;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
     }
 
     public boolean isDead() {
         return dead;
+    }
+
+    public boolean isInvincible() {
+        return invincible;
+    }
+
+    public void setInvincible(boolean invincible) {
+        this.invincible = invincible;
+    }
+
+    public float getInvincibleTimer() {
+        return invincibleTimer;
+    }
+
+    public void setInvincibleTimer(float invincibleTimer) {
+        this.invincibleTimer = invincibleTimer;
+    }
+
+    public boolean isAttack() {
+        return attack;
+    }
+
+    public void setAttack(boolean attack) {
+        this.attack = attack;
+    }
+
+    public int getHitAnimationTimer() {
+        return hitAnimationTimer;
+    }
+
+    public void setHitAnimationTimer(int hitAnimationTimer) {
+        this.hitAnimationTimer = hitAnimationTimer;
+    }
+
+    public int getAttackTimer() {
+        return attackTimer;
+    }
+
+    public void setAttackTimer(int attackTimer) {
+        this.attackTimer = attackTimer;
     }
 
 }

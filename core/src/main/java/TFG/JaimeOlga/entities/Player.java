@@ -204,30 +204,7 @@ public class Player extends Entity {
 
     }
 
-    // Getters y setters...
-    public float getxPosition() {
-        return xPosition;
-    }
-
-    public void setxPosition(float xPosition) {
-        this.xPosition = xPosition;
-    }
-
-    public float getyPosition() {
-        return yPosition;
-    }
-
-    public void setyPosition(float yPosition) {
-        this.yPosition = yPosition;
-    }
-
-    public float getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(float speed) {
-        this.speed = speed;
-    }
+    // Getters y setters Exclusivos
 
     public boolean isRight() {
         return right;

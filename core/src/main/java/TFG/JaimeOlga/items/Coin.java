@@ -41,4 +41,10 @@ public class Coin extends Item {
         throw new UnsupportedOperationException("Unimplemented method 'applyEffect'");
     }
 
+    @Override
+    public void applyEffect(Main game, Player player) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'applyEffect'");
+    }
+
 }

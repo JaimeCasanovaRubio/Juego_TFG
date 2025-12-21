@@ -17,7 +17,7 @@ public class GroundEnemy extends Entity {
     public GroundEnemy(float xPosition, float yPosition, int patrolRange, int detectionRange) {
 
         super(xPosition, yPosition);
-        this.maxHealth = 5;
+        this.maxHealth = 4;
         this.health = maxHealth;
 
         // MOVIMIENTO

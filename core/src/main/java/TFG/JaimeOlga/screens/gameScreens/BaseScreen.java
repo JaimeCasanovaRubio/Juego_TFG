@@ -1,4 +1,4 @@
-package TFG.JaimeOlga.screens;
+package TFG.JaimeOlga.screens.gameScreens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -12,7 +12,6 @@ import TFG.JaimeOlga.controllers.InputController;
 import TFG.JaimeOlga.controllers.ItemController;
 import TFG.JaimeOlga.controllers.MapController;
 import TFG.JaimeOlga.entities.Player;
-import static TFG.JaimeOlga.utils.Cons.*;
 
 public class BaseScreen implements Screen {
 
@@ -29,10 +28,10 @@ public class BaseScreen implements Screen {
     public static final int GAME_WIDTH = 1280;
     public static final int GAME_HEIGHT = 720;
 
-    public BaseScreen(Main game) {
+    public BaseScreen(Main game, Player player) {
         this.game = game;
 
-        player = new Player(GAME_WIDTH / SCALE, GAME_HEIGHT / SCALE);
+        this.player = player;
         inputController = new InputController(player, game);
         mapController = new MapController(game);
 

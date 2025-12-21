@@ -18,13 +18,18 @@ public class Stone extends Item {
     }
 
     @Override
-    public void applyEffect(Main game) {
+    public void applyEffect(Main game, Player player) {
+        player.setxPosition(600);
+        player.setyPosition(400);
         game.changeScreen(game.oniricForestScreen);
     }
 
     @Override
     public void applyEffect(Player player) {
+    }
 
+    @Override
+    public void applyEffect(Main game) {
     }
 
 }

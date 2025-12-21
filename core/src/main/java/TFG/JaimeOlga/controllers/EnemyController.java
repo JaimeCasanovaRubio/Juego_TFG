@@ -82,7 +82,9 @@ public class EnemyController {
         Iterator<Entity> iterator = enemies.iterator();
         while (iterator.hasNext()) {
             Entity enemy = iterator.next();
-            enemy.update(delta, collisionManager, playerHitbox);
+            if (enemy instanceof GroundEnemy) {
+                ((GroundEnemy) enemy).update(delta, collisionManager, playerHitbox);
+            }
 
             // Eliminar enemigos muertos (opcional)
             if (enemy.isDead()) {

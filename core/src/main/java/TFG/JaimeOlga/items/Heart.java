@@ -39,4 +39,10 @@ public class Heart extends Item {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'applyEffect'");
     }
+
+    @Override
+    public void applyEffect(Main game, Player player) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'applyEffect'");
+    }
 }

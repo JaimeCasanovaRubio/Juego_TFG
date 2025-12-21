@@ -14,7 +14,6 @@ import TFG.JaimeOlga.controllers.ItemController;
 import TFG.JaimeOlga.controllers.MapController;
 import TFG.JaimeOlga.entities.Entity;
 import TFG.JaimeOlga.entities.Player;
-import static TFG.JaimeOlga.utils.Cons.*;
 
 public class OniricForestScreen implements Screen {
 
@@ -32,10 +31,10 @@ public class OniricForestScreen implements Screen {
     public static final int GAME_WIDTH = 1280;
     public static final int GAME_HEIGHT = 720;
 
-    public OniricForestScreen(Main game) {
+    public OniricForestScreen(Main game, Player player) {
         this.game = game;
 
-        player = new Player(GAME_WIDTH / SCALE, GAME_HEIGHT / SCALE);
+        this.player = player;
         inputController = new InputController(player, game);
         mapController = new MapController(game);
 
