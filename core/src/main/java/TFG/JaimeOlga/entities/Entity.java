@@ -16,6 +16,7 @@ public class Entity {
     protected int currentAnimation;
     protected float stateTime;
     protected boolean movingRight;
+    protected boolean movingUp;
 
     protected Rectangle hitbox;
     protected float hitboxOffsetX;

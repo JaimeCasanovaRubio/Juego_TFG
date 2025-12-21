@@ -11,8 +11,7 @@ import com.badlogic.gdx.math.Rectangle;
 import TFG.JaimeOlga.controllers.CollisionManager;
 
 public class GroundEnemy extends Entity {
-    private float leftBound;
-    private float rightBound;
+    private float leftBound, rightBound, upBound, downBound;
     private boolean facingRight = true;
 
     public GroundEnemy(float xPosition, float yPosition, int patrolRange) {
@@ -65,6 +64,19 @@ public class GroundEnemy extends Entity {
                 }
             }
         }
+        if (movingUp && !collisionManager.checkCollisions(hitbox)) {
+            yPosition += MONSTER_SPEED;
+            if (yPosition >= upBound) {
+                movingUp = false; // Dar la vuelta
+            }
+        } else {
+            if (!collisionManager.checkCollisions(hitbox)) {
+                yPosition -= MONSTER_SPEED;
+                if (yPosition <= downBound) {
+                    movingUp = true; // Dar la vuelta
+                }
+            }
+        }
     }
 
     /**
@@ -85,12 +97,26 @@ public class GroundEnemy extends Entity {
         Rectangle rightZone = new Rectangle(xPosition + hitbox.getWidth(), yPosition, rightZoneWidth,
                 hitbox.getHeight());
 
+        // Zona arriba del enemigo (desde la posición del enemigo hasta upBound)
+        float upZoneWidth = yPosition - upBound;
+        Rectangle upZone = new Rectangle(xPosition, upBound, hitbox.getWidth(), upZoneWidth);
+
+        // Zona abajo del enemigo (desde la posición del enemigo hasta downBound)
+        float downZoneWidth = downBound - yPosition;
+        Rectangle downZone = new Rectangle(xPosition, downBound, hitbox.getWidth(), downZoneWidth);
+
         // Comprobar si el jugador está en alguna zona
         if (leftZone.overlaps(playerHitbox)) {
             movingRight = false; // Ir hacia la izquierda donde está el jugador
         }
         if (rightZone.overlaps(playerHitbox)) {
             movingRight = true; // Ir hacia la derecha donde está el jugador
+        }
+        if (upZone.overlaps(playerHitbox)) {
+            movingUp = true; // Ir hacia arriba donde está el jugador
+        }
+        if (downZone.overlaps(playerHitbox)) {
+            movingUp = false; // Ir hacia abajo donde está el jugador
         }
     }
 
