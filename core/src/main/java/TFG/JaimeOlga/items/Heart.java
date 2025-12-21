@@ -1,6 +1,8 @@
 package TFG.JaimeOlga.items;
 
 import com.badlogic.gdx.graphics.Texture;
+
+import TFG.JaimeOlga.Main;
 import TFG.JaimeOlga.entities.Player;
 
 /**
@@ -30,5 +32,11 @@ public class Heart extends Item {
     public void applyEffect(Player player) {
         player.heal(healAmount);
         System.out.println("💖 +1 vida");
+    }
+
+    @Override
+    public void applyEffect(Main game) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'applyEffect'");
     }
 }

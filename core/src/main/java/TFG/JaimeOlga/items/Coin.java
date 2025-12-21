@@ -1,6 +1,8 @@
 package TFG.JaimeOlga.items;
 
 import com.badlogic.gdx.graphics.Texture;
+
+import TFG.JaimeOlga.Main;
 import TFG.JaimeOlga.entities.Player;
 
 /**
@@ -31,6 +33,12 @@ public class Coin extends Item {
         // TODO: Añadir método addScore(int) a Player
         // player.addScore(value);
         System.out.println("🪙 +" + value + " puntos");
+    }
+
+    @Override
+    public void applyEffect(Main game) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'applyEffect'");
     }
 
 }

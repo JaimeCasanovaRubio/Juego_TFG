@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="31">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="36">
  <tileset firstgid="1" source="tileSet.tsx"/>
-
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="csv">
 1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
@@ -42,6 +41,26 @@
   <object id="18" x="1216" y="1.33333" width="61.3333" height="890.667"/>
   <object id="19" x="1.33333" y="-1.33333" width="1212" height="61.3333"/>
  </objectgroup>
- <objectgroup id="8" name="enemies"/>
- <objectgroup id="9" name="items"/>
+ <objectgroup id="8" name="enemies">
+  <object id="34" x="582.667" y="848" width="25.3333" height="44">
+   <properties>
+    <property name="patrolRange" type="int" value="300"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </object>
+  <object id="35" x="227.333" y="850" width="25.3333" height="44">
+   <properties>
+    <property name="patrolRange" type="int" value="300"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="9" name="items">
+  <object id="31" x="459.172" y="847.585" width="18.977" height="48.6286">
+   <properties>
+    <property name="type" value="stone"/>
+    <property name="value" type="int" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

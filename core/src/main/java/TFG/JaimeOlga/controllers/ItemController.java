@@ -15,12 +15,16 @@ import TFG.JaimeOlga.entities.Player;
 import TFG.JaimeOlga.items.Coin;
 import TFG.JaimeOlga.items.Heart;
 import TFG.JaimeOlga.items.Item;
+import TFG.JaimeOlga.items.Stone;
+import TFG.JaimeOlga.Main;
 
 public class ItemController {
     private ArrayList<Item> items;
+    private Main game;
 
-    public ItemController() {
+    public ItemController(Main game) {
         this.items = new ArrayList<>();
+        this.game = game;
     }
 
     /**
@@ -44,7 +48,9 @@ public class ItemController {
         MapObjects objects = itemLayer.getObjects();
 
         for (MapObject object : objects) {
+
             if (object instanceof RectangleMapObject) {
+
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
                 // Leer propiedades personalizadas del objeto en Tiled
@@ -62,6 +68,9 @@ public class ItemController {
                         break;
                     case "heart":
                         items.add(new Heart(x, y, value)); // value = vida a recuperar
+                        break;
+                    case "stone":
+                        items.add(new Stone(x, y));
                         break;
                     // Añadir más tipos aquí:
                     // case "speedboost":
@@ -88,7 +97,8 @@ public class ItemController {
 
             // Si el jugador toca el item, recogerlo
             if (!item.isCollected() && item.getHitbox().overlaps(playerHitbox)) {
-                item.collect(player);
+                item.collect(player, game);
+
             }
 
             // Eliminar items recogidos de la lista

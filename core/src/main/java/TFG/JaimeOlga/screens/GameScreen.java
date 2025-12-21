@@ -44,10 +44,11 @@ public class GameScreen implements Screen {
         this.game = game;
 
         player = new Player(GAME_WIDTH / SCALE, GAME_HEIGHT / SCALE);
-        itemController = new ItemController();
-        mapController = new MapController();
-        enemyController = new EnemyController();
         inputController = new InputController(player, game);
+        mapController = new MapController(game);
+
+        itemController = mapController.getItemController();
+        enemyController = mapController.getEnemyController();
 
         // Cargar el mapa de Tiled
         mapController.loadMap("maps/prueba1.tmx");
@@ -85,8 +86,8 @@ public class GameScreen implements Screen {
 
         game.batch.begin();
 
-        itemController.draw(game.batch);
         player.draw(game.batch);
+        itemController.draw(game.batch);
         enemyController.draw(game.batch);
 
         game.batch.end();

@@ -5,6 +5,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
+import TFG.JaimeOlga.Main;
+
 import static TFG.JaimeOlga.utils.Cons.SCALE;
 
 import java.util.ArrayList;
@@ -21,11 +23,11 @@ public class MapController {
     private EnemyController enemyController;
     private ItemController itemController;
 
-    public MapController() {
+    public MapController(Main game) {
         mapLoader = new TmxMapLoader();
         collisionManager = new CollisionManager();
         enemyController = new EnemyController();
-        itemController = new ItemController();
+        itemController = new ItemController(game);
         maps = new ArrayList<>();
         currentMapIndex = 0;
     }
