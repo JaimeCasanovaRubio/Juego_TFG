@@ -4,9 +4,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import TFG.JaimeOlga.screens.GameScreen;
+import TFG.JaimeOlga.screens.BaseScreen;
 import TFG.JaimeOlga.screens.MenuScreen;
 import TFG.JaimeOlga.screens.SettingsMenu;
+import TFG.JaimeOlga.screens.gameScreens.OniricForestScreen;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all
@@ -17,15 +18,17 @@ public class Main extends Game {
 
     // Screens (se crean una sola vez y se reutilizan)
     public MenuScreen menuScreen;
-    public GameScreen gameScreen;
+    public OniricForestScreen oniricForestScreen;
     public SettingsMenu settingsMenu;
+    public BaseScreen baseScreen;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         menuScreen = new MenuScreen(this);
-        gameScreen = new GameScreen(this);
+        oniricForestScreen = new OniricForestScreen(this);
         settingsMenu = new SettingsMenu(this);
+        baseScreen = new BaseScreen(this);
         setScreen(menuScreen);
     }
 
@@ -45,9 +48,11 @@ public class Main extends Game {
         // Liberar recursos de todas las pantallas al cerrar el juego
         if (menuScreen != null)
             menuScreen.dispose();
-        if (gameScreen != null)
-            gameScreen.dispose();
+        if (oniricForestScreen != null)
+            oniricForestScreen.dispose();
         if (settingsMenu != null)
             settingsMenu.dispose();
+        if (baseScreen != null)
+            baseScreen.dispose();
     }
 }

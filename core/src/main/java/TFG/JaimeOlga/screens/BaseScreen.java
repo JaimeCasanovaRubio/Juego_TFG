@@ -20,7 +20,7 @@ import TFG.JaimeOlga.entities.Entity;
 import TFG.JaimeOlga.entities.Player;
 import static TFG.JaimeOlga.utils.Cons.*;
 
-public class GameScreen implements Screen {
+public class BaseScreen implements Screen {
 
     private Main game;
     private OrthographicCamera camera;
@@ -40,7 +40,7 @@ public class GameScreen implements Screen {
     public static final int GAME_WIDTH = 1280;
     public static final int GAME_HEIGHT = 720;
 
-    public GameScreen(Main game) {
+    public BaseScreen(Main game) {
         this.game = game;
 
         player = new Player(GAME_WIDTH / SCALE, GAME_HEIGHT / SCALE);
@@ -51,7 +51,7 @@ public class GameScreen implements Screen {
         enemyController = mapController.getEnemyController();
 
         // Cargar el mapa de Tiled
-        mapController.loadMap("maps/prueba1.tmx");
+        mapController.loadMap("maps/base.tmx");
 
         // Debug renderer
         shapeRenderer = new ShapeRenderer();

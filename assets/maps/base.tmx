@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="37">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="39">
  <tileset firstgid="1" source="tileSet.tsx"/>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="csv">
@@ -35,27 +35,18 @@
 21,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,23
 </data>
  </layer>
- <objectgroup id="7" name="collision" visible="0">
-  <object id="15" x="2.66667" y="61.3333" width="57.3333" height="897.333"/>
-  <object id="17" x="60" y="896" width="1217.33" height="62.6667"/>
-  <object id="18" x="1216" y="1.33333" width="61.3333" height="890.667"/>
-  <object id="19" x="1.33333" y="-1.33333" width="1212" height="61.3333"/>
+ <objectgroup id="2" name="collision">
+  <object id="1" x="1" y="1" width="1276" height="60"/>
+  <object id="2" x="0" y="30" width="59" height="926"/>
+  <object id="3" x="57" y="898" width="1221" height="61"/>
+  <object id="4" x="1222" y="60" width="54" height="848"/>
  </objectgroup>
- <objectgroup id="8" name="enemies" visible="0">
-  <object id="34" x="888.103" y="573.354" width="25.3333" height="44">
+ <objectgroup id="3" name="items">
+  <object id="38" x="396" y="870" width="22" height="26">
    <properties>
-    <property name="detectionRange" value="100"/>
-    <property name="patrolRange" type="int" value="300"/>
-    <property name="type" value="ground"/>
-   </properties>
-  </object>
-  <object id="35" x="332.019" y="635.702" width="25.3333" height="44">
-   <properties>
-    <property name="detectionRange" value="50"/>
-    <property name="patrolRange" type="int" value="300"/>
-    <property name="type" value="ground"/>
+    <property name="type" value="stone"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="9" name="items"/>
+ <objectgroup id="4" name="enemies"/>
 </map>

@@ -48,6 +48,7 @@ public class EnemyController {
                 // Leer propiedades personalizadas del objeto en Tiled
                 String type = object.getProperties().get("type", String.class);
                 int patrolRange = object.getProperties().get("patrolRange", 100, Integer.class);
+                int detectionRange = object.getProperties().get("detectionRange", 200, Integer.class);
 
                 // Escalar posición
                 float x = rect.x * SCALE;
@@ -56,7 +57,7 @@ public class EnemyController {
                 // Crear el tipo de enemigo correspondiente
                 switch (type.toLowerCase()) {
                     case "ground":
-                        enemies.add(new GroundEnemy(x, y, patrolRange));
+                        enemies.add(new GroundEnemy(x, y, patrolRange, detectionRange));
                         break;
                     // Añadir más tipos aquí:
                     // case "flying":

@@ -28,7 +28,7 @@ public class InputController implements InputProcessor {
             player.attack(); // Inicia el ataque con su timer
         }
         if (keycode == Keys.ESCAPE) {
-            if (game.getScreen() == game.gameScreen) {
+            if (game.getScreen() == game.oniricForestScreen) {
                 game.setScreen(game.settingsMenu);
             }
         }

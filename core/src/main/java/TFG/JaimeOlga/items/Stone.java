@@ -19,7 +19,7 @@ public class Stone extends Item {
 
     @Override
     public void applyEffect(Main game) {
-        game.changeScreen(game.settingsMenu);
+        game.changeScreen(game.oniricForestScreen);
     }
 
     @Override

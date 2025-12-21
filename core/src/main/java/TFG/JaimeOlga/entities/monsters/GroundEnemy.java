@@ -11,16 +11,30 @@ import com.badlogic.gdx.math.Rectangle;
 import TFG.JaimeOlga.controllers.CollisionManager;
 
 public class GroundEnemy extends Entity {
-    private float leftBound, rightBound, upBound, downBound;
+    private float leftBound, rightBound, upBound, downBound, leftDetection, rightDetection, upDetection, downDetection;
     private boolean facingRight = true;
 
-    public GroundEnemy(float xPosition, float yPosition, int patrolRange) {
+    public GroundEnemy(float xPosition, float yPosition, int patrolRange, int detectionRange) {
 
         super(xPosition, yPosition);
         this.maxHealth = 5;
         this.health = maxHealth;
+
+        // MOVIMIENTO
         this.leftBound = xPosition - patrolRange;
         this.rightBound = xPosition + patrolRange;
+        this.upBound = yPosition + patrolRange;
+        this.downBound = yPosition - patrolRange;
+
+        // DETECCIÓN
+        this.leftDetection = xPosition - detectionRange;
+        this.rightDetection = xPosition + detectionRange;
+        this.upDetection = yPosition + detectionRange;
+        this.downDetection = yPosition - detectionRange;
+
+        // Inicializar dirección de movimiento
+        this.movingRight = true;
+        this.movingUp = true;
 
         // Initialize hitbox (using similar dimensions to player for now)
         float hitboxWidth = 18 * SCALE;
@@ -48,29 +62,31 @@ public class GroundEnemy extends Entity {
     }
 
     public void patrol(float delta, CollisionManager collisionManager) {
-        // Mover en la dirección actual
-        if (movingRight && !collisionManager.checkCollisions(hitbox)) {
-            facingRight = true;
-            xPosition += MONSTER_SPEED;
-            if (xPosition >= rightBound) {
-                movingRight = false; // Dar la vuelta
-            }
-        } else {
-            facingRight = false;
-            if (!collisionManager.checkCollisions(hitbox)) {
+        // Movimiento horizontal
+        if (!collisionManager.checkCollisions(hitbox)) {
+            if (movingRight) {
+                facingRight = true;
+                xPosition += MONSTER_SPEED;
+                if (xPosition >= rightBound) {
+                    movingRight = false; // Dar la vuelta
+                }
+            } else {
+                facingRight = false;
                 xPosition -= MONSTER_SPEED;
                 if (xPosition <= leftBound) {
                     movingRight = true; // Dar la vuelta
                 }
             }
         }
-        if (movingUp && !collisionManager.checkCollisions(hitbox)) {
-            yPosition += MONSTER_SPEED;
-            if (yPosition >= upBound) {
-                movingUp = false; // Dar la vuelta
-            }
-        } else {
-            if (!collisionManager.checkCollisions(hitbox)) {
+
+        // Movimiento vertical
+        if (!collisionManager.checkCollisions(hitbox)) {
+            if (movingUp) {
+                yPosition += MONSTER_SPEED;
+                if (yPosition >= upBound) {
+                    movingUp = false; // Dar la vuelta
+                }
+            } else {
                 yPosition -= MONSTER_SPEED;
                 if (yPosition <= downBound) {
                     movingUp = true; // Dar la vuelta
@@ -86,24 +102,29 @@ public class GroundEnemy extends Entity {
      * @return true si el jugador fue detectado
      */
     public void checkZone(Rectangle playerHitbox) {
-        // Zona a la izquierda del enemigo (desde leftBound hasta la posición del
-        // enemigo)
-        float leftZoneWidth = xPosition - leftBound;
-        Rectangle leftZone = new Rectangle(leftBound, yPosition, leftZoneWidth, hitbox.getHeight());
+        // Centro del enemigo para referencia
+        float enemyCenterX = xPosition + hitbox.getWidth() / 2;
+        float enemyCenterY = yPosition + hitbox.getHeight() / 2;
 
-        // Zona a la derecha del enemigo (desde la posición del enemigo hasta
-        // rightBound)
-        float rightZoneWidth = rightBound - xPosition;
-        Rectangle rightZone = new Rectangle(xPosition + hitbox.getWidth(), yPosition, rightZoneWidth,
-                hitbox.getHeight());
+        // Zona a la izquierda del enemigo (desde leftBound hasta el enemigo)
+        // Cubre toda la altura de la zona de patrullaje
+        float leftZoneWidth = enemyCenterX - leftDetection;
+        float zoneHeight = upDetection - downDetection; // Altura total de la zona de patrullaje
+        Rectangle leftZone = new Rectangle(leftDetection, downDetection, leftZoneWidth, zoneHeight);
 
-        // Zona arriba del enemigo (desde la posición del enemigo hasta upBound)
-        float upZoneWidth = yPosition - upBound;
-        Rectangle upZone = new Rectangle(xPosition, upBound, hitbox.getWidth(), upZoneWidth);
+        // Zona a la derecha del enemigo (desde el enemigo hasta rightBound)
+        float rightZoneWidth = rightDetection - enemyCenterX;
+        Rectangle rightZone = new Rectangle(enemyCenterX, downDetection, rightZoneWidth, zoneHeight);
 
-        // Zona abajo del enemigo (desde la posición del enemigo hasta downBound)
-        float downZoneWidth = downBound - yPosition;
-        Rectangle downZone = new Rectangle(xPosition, downBound, hitbox.getWidth(), downZoneWidth);
+        // Zona arriba del enemigo (desde el centro del enemigo hasta upBound)
+        // Cubre toda la anchura de la zona de patrullaje
+        float zoneWidth = rightDetection - leftDetection;
+        float upZoneHeight = upDetection - enemyCenterY;
+        Rectangle upZone = new Rectangle(leftDetection, enemyCenterY, zoneWidth, upZoneHeight);
+
+        // Zona abajo del enemigo (desde downBound hasta el centro del enemigo)
+        float downZoneHeight = enemyCenterY - downDetection;
+        Rectangle downZone = new Rectangle(leftDetection, downDetection, zoneWidth, downZoneHeight);
 
         // Comprobar si el jugador está en alguna zona
         if (leftZone.overlaps(playerHitbox)) {

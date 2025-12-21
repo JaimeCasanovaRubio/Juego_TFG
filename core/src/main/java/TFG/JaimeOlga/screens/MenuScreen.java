@@ -36,7 +36,7 @@ public class MenuScreen implements Screen {
 
         // Detectar input para cambiar de pantalla
         if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.ENTER)) {
-            game.changeScreen(game.gameScreen);
+            game.changeScreen(game.baseScreen);
         }
     }
 
