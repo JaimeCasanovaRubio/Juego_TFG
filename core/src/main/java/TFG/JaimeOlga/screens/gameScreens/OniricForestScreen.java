@@ -15,6 +15,8 @@ import TFG.JaimeOlga.controllers.MapController;
 import TFG.JaimeOlga.entities.Entity;
 import TFG.JaimeOlga.entities.Player;
 
+import static TFG.JaimeOlga.utils.Cons.Images.MAP_ZONE1;
+
 public class OniricForestScreen implements Screen {
 
     private Main game;
@@ -42,7 +44,7 @@ public class OniricForestScreen implements Screen {
         enemyController = mapController.getEnemyController();
 
         // Cargar el mapa de Tiled
-        mapController.loadMap("maps/prueba1.tmx");
+        mapController.loadMap(MAP_ZONE1);
 
         // Configurar cámara y viewport
         camera = new OrthographicCamera();

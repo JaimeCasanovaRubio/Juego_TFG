@@ -13,6 +13,8 @@ import TFG.JaimeOlga.controllers.ItemController;
 import TFG.JaimeOlga.controllers.MapController;
 import TFG.JaimeOlga.entities.Player;
 
+import static TFG.JaimeOlga.utils.Cons.Images.MAP_BASE;
+
 public class BaseScreen implements Screen {
 
     private Main game;
@@ -38,7 +40,7 @@ public class BaseScreen implements Screen {
         itemController = mapController.getItemController();
 
         // Cargar el mapa de Tiled
-        mapController.loadMap("maps/base.tmx");
+        mapController.loadMap(MAP_BASE);
 
         // Configurar cámara y viewport
         camera = new OrthographicCamera();
