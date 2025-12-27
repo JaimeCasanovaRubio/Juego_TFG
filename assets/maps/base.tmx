@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="17" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="39">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="17" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="42">
  <tileset firstgid="1" source="tileSet.tsx"/>
  <imagelayer id="10" name="Capa de Imagen 1" offsetx="-299.182" offsety="-97.2424">
   <image source="suelo basee.png" width="1280" height="720"/>
@@ -14,6 +14,11 @@
   <object id="38" x="306.5" y="443" width="22" height="26">
    <properties>
     <property name="type" value="stone"/>
+   </properties>
+  </object>
+  <object id="39" x="678.667" y="59.3333">
+   <properties>
+    <property name="type" value="florero"/>
    </properties>
   </object>
  </objectgroup>
