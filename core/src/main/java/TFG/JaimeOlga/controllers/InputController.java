@@ -8,6 +8,7 @@ import TFG.JaimeOlga.Main;
 public class InputController implements InputProcessor {
     private Player player;
     private Main game;
+    public static boolean debugMode = false; // Toggle con F3
 
     public InputController(Player player, Main game) {
         this.player = player;
@@ -26,6 +27,9 @@ public class InputController implements InputProcessor {
             player.setDown(true);
         } else if (keycode == Keys.J) {
             player.attack(); // Inicia el ataque con su timer
+        } else if (keycode == Keys.F3) {
+            debugMode = !debugMode;
+            System.out.println("Debug mode: " + (debugMode ? "ON" : "OFF"));
         }
         if (keycode == Keys.ESCAPE) {
             if (game.getScreen() == game.oniricForestScreen) {

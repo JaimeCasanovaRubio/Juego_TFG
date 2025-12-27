@@ -48,7 +48,7 @@ public class EnemyController {
                 // Leer propiedades personalizadas del objeto en Tiled
                 String type = object.getProperties().get("type", String.class);
                 int patrolRange = object.getProperties().get("patrolRange", 100, Integer.class);
-                int detectionRange = object.getProperties().get("detectionRange", 200, Integer.class);
+                int detectionRange = object.getProperties().get("detectionRange", 400, Integer.class);
 
                 // Escalar posición
                 float x = rect.x * SCALE;

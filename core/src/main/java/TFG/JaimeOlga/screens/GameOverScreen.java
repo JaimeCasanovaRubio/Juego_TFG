@@ -7,60 +7,50 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 import TFG.JaimeOlga.Main;
 
-public class SettingsMenu implements Screen {
+public class GameOverScreen implements Screen {
+
     private Main game;
     private BitmapFont font;
 
-    public SettingsMenu(Main game) {
+    public GameOverScreen(Main game) {
         this.game = game;
-        this.font = new BitmapFont();
+        font = new BitmapFont();
     }
 
     @Override
     public void show() {
+
         // Limpiar pantalla con color oscuro
         Gdx.gl.glClearColor(0.1f, 0.1f, 0.15f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
-        font.draw(game.batch, "Ajustes", 500, 400);
+        font.draw(game.batch, "GAME OVER", 500, 400);
         game.batch.end();
+
     }
 
     @Override
     public void render(float delta) {
-        // Limpiar pantalla con color oscuro
-        Gdx.gl.glClearColor(0.1f, 0.1f, 0.15f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        game.batch.begin();
-        font.draw(game.batch, "RESTAURANTE ALIENIGENA", 100, 400);
-        font.draw(game.batch, "Pulsa ENTER para jugar", 100, 300);
-        game.batch.end();
     }
 
     @Override
     public void resize(int width, int height) {
-
     }
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void hide() {
-
     }
 
     @Override
     public void dispose() {
-
     }
 }

@@ -90,17 +90,22 @@ public class OniricForestScreen implements Screen {
 
     public void update(float delta) {
 
-        // Actualizar enemigos (cargados desde Tiled)
+        // IMPORTANTE: Actualizar jugador PRIMERO para que su hitbox esté actualizada
+        player.update(delta, mapController.getCollisionManager());
+
+        // Actualizar enemigos (cargados desde Tiled) - ahora usan la hitbox actualizada
+        // del jugador
         enemyController.update(delta, mapController.getCollisionManager(), player.getHitbox());
 
         // Actualizar items (detectar colisiones y recoger)
         itemController.update(player);
 
-        // Actualizar jugador
-        player.update(delta, mapController.getCollisionManager());
-
         // Comprobar colisiones jugador-enemigos
         checkPlayerEnemyCollisions();
+
+        if (player.getHealth() <= 0) {
+            game.setScreen(game.settingsMenu);
+        }
 
         camera.position.x = player.getxPosition();
         camera.position.y = player.getyPosition();
@@ -116,8 +121,61 @@ public class OniricForestScreen implements Screen {
 
         game.batch.end();
 
+        // Dibujar hitboxes de debug si F3 está activado
+        if (InputController.debugMode) {
+            drawDebugHitboxes();
+        }
+
         // Dibujar HUD (vida del jugador) después de todo lo demás
         drawPlayerHealth();
+    }
+
+    /**
+     * Dibuja las hitboxes de debug cuando F3 está activado.
+     */
+    private void drawDebugHitboxes() {
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+
+        // Hitbox del jugador (verde)
+        shapeRenderer.setColor(Color.GREEN);
+        shapeRenderer.rect(
+                player.getHitbox().x,
+                player.getHitbox().y,
+                player.getHitbox().width,
+                player.getHitbox().height);
+
+        // Hitboxes de enemigos (rojo)
+        shapeRenderer.setColor(Color.RED);
+        for (Entity enemy : enemyController.getEnemies()) {
+            if (enemy.getHitbox() != null) {
+                shapeRenderer.rect(
+                        enemy.getHitbox().x,
+                        enemy.getHitbox().y,
+                        enemy.getHitbox().width,
+                        enemy.getHitbox().height);
+            }
+        }
+
+        // Hitboxes de items (azul)
+        shapeRenderer.setColor(Color.BLUE);
+        for (var item : itemController.getItems()) {
+            if (item.getHitbox() != null) {
+                shapeRenderer.rect(
+                        item.getHitbox().x,
+                        item.getHitbox().y,
+                        item.getHitbox().width,
+                        item.getHitbox().height);
+            }
+        }
+
+        // Colisiones del mapa (morado)
+        shapeRenderer.setColor(Color.PURPLE);
+        for (var rect : mapController.getCollisionManager().getCollisionRects()) {
+            shapeRenderer.rect(rect.x, rect.y, rect.width, rect.height);
+        }
+
+        shapeRenderer.end();
     }
 
     /**

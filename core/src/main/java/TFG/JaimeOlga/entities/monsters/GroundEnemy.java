@@ -11,7 +11,8 @@ import com.badlogic.gdx.math.Rectangle;
 import TFG.JaimeOlga.controllers.CollisionManager;
 
 public class GroundEnemy extends Entity {
-    private float leftBound, rightBound, upBound, downBound, leftDetection, rightDetection, upDetection, downDetection;
+    private float leftBound, rightBound, upBound, downBound;
+    private float detectionRange; // Rango de detección en píxeles
     private boolean facingRight = true;
 
     public GroundEnemy(float xPosition, float yPosition, int patrolRange, int detectionRange) {
@@ -20,17 +21,14 @@ public class GroundEnemy extends Entity {
         this.maxHealth = 4;
         this.health = maxHealth;
 
-        // MOVIMIENTO
+        // MOVIMIENTO - límites de patrulla (fijos en el mapa)
         this.leftBound = xPosition - patrolRange;
         this.rightBound = xPosition + patrolRange;
         this.upBound = yPosition + patrolRange;
         this.downBound = yPosition - patrolRange;
 
-        // DETECCIÓN
-        this.leftDetection = xPosition - detectionRange;
-        this.rightDetection = xPosition + detectionRange;
-        this.upDetection = yPosition + detectionRange;
-        this.downDetection = yPosition - detectionRange;
+        // DETECCIÓN - guardar solo el rango, las zonas se calculan dinámicamente
+        this.detectionRange = detectionRange * SCALE;
 
         // Inicializar dirección de movimiento
         this.movingRight = true;
@@ -119,34 +117,38 @@ public class GroundEnemy extends Entity {
 
     /**
      * Detecta si el jugador está en la zona de visión del enemigo.
+     * Las zonas se calculan desde la posición ACTUAL del enemigo.
      * 
      * @param playerHitbox El hitbox del jugador
-     * @return true si el jugador fue detectado
      */
     public void checkZone(Rectangle playerHitbox) {
-        // Centro del enemigo para referencia
+        // Centro del enemigo
         float enemyCenterX = xPosition + hitbox.getWidth() / 2;
         float enemyCenterY = yPosition + hitbox.getHeight() / 2;
 
-        // Zona a la izquierda del enemigo (desde leftBound hasta el enemigo)
-        // Cubre toda la altura de la zona de patrullaje
-        float leftZoneWidth = enemyCenterX - leftDetection;
-        float zoneHeight = upDetection - downDetection; // Altura total de la zona de patrullaje
-        Rectangle leftZone = new Rectangle(leftDetection, downDetection, leftZoneWidth, zoneHeight);
+        // Calcular zonas de detección desde la posición ACTUAL del enemigo
+        float currentLeftDetection = enemyCenterX - detectionRange;
+        float currentRightDetection = enemyCenterX + detectionRange;
+        float currentUpDetection = enemyCenterY + detectionRange;
+        float currentDownDetection = enemyCenterY - detectionRange;
 
-        // Zona a la derecha del enemigo (desde el enemigo hasta rightBound)
-        float rightZoneWidth = rightDetection - enemyCenterX;
-        Rectangle rightZone = new Rectangle(enemyCenterX, downDetection, rightZoneWidth, zoneHeight);
+        // Zona a la izquierda del enemigo
+        float leftZoneWidth = enemyCenterX - currentLeftDetection;
+        float zoneHeight = currentUpDetection - currentDownDetection;
+        Rectangle leftZone = new Rectangle(currentLeftDetection, currentDownDetection, leftZoneWidth, zoneHeight);
 
-        // Zona arriba del enemigo (desde el centro del enemigo hasta upBound)
-        // Cubre toda la anchura de la zona de patrullaje
-        float zoneWidth = rightDetection - leftDetection;
-        float upZoneHeight = upDetection - enemyCenterY;
-        Rectangle upZone = new Rectangle(leftDetection, enemyCenterY, zoneWidth, upZoneHeight);
+        // Zona a la derecha del enemigo
+        float rightZoneWidth = currentRightDetection - enemyCenterX;
+        Rectangle rightZone = new Rectangle(enemyCenterX, currentDownDetection, rightZoneWidth, zoneHeight);
 
-        // Zona abajo del enemigo (desde downBound hasta el centro del enemigo)
-        float downZoneHeight = enemyCenterY - downDetection;
-        Rectangle downZone = new Rectangle(leftDetection, downDetection, zoneWidth, downZoneHeight);
+        // Zona arriba del enemigo
+        float zoneWidth = currentRightDetection - currentLeftDetection;
+        float upZoneHeight = currentUpDetection - enemyCenterY;
+        Rectangle upZone = new Rectangle(currentLeftDetection, enemyCenterY, zoneWidth, upZoneHeight);
+
+        // Zona abajo del enemigo
+        float downZoneHeight = enemyCenterY - currentDownDetection;
+        Rectangle downZone = new Rectangle(currentLeftDetection, currentDownDetection, zoneWidth, downZoneHeight);
 
         // Comprobar si el jugador está en alguna zona
         if (leftZone.overlaps(playerHitbox)) {
