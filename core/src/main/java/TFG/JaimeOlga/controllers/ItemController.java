@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import TFG.JaimeOlga.entities.Player;
 import TFG.JaimeOlga.items.Coin;
+import TFG.JaimeOlga.items.Florero;
 import TFG.JaimeOlga.items.Heart;
 import TFG.JaimeOlga.items.Item;
 import TFG.JaimeOlga.items.Stone;
@@ -71,6 +72,10 @@ public class ItemController {
                         break;
                     case "stone":
                         items.add(new Stone(x, y));
+                        break;
+                    case "florero":
+                        items.add(new Florero(x, y));
+                        System.out.println("FLORERO");
                         break;
                     // Añadir más tipos aquí:
                     // case "speedboost":

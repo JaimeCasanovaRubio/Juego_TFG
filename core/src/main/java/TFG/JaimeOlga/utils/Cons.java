@@ -41,6 +41,8 @@ public class Cons {
         public static final int DOUBLE_JUMP = 5;
         public static final int FALL = 6;
 
+        // OBJECTS
+        public static final String FLORERO = "tileSet/3 Objects/florero.png";
         // MAPS
         public static final String MAP_BASE = "maps/base.tmx";
         public static final String MAP_ZONE1 = "maps/zone1.tmx";

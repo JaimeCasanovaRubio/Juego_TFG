@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="17" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="39">
  <tileset firstgid="1" source="tileSet.tsx"/>
- <imagelayer id="10" name="Capa de Imagen 1" offsetx="17.6667" offsety="75">
-  <image source="../tileSet/2 Background/Background.png" width="576" height="324"/>
+ <imagelayer id="10" name="Capa de Imagen 1" offsetx="-299.182" offsety="-97.2424">
+  <image source="suelo basee.png" width="1280" height="720"/>
  </imagelayer>
  <objectgroup id="2" name="collision">
   <object id="1" x="5.33333" y="4.167" width="579" height="58"/>
