@@ -2,8 +2,10 @@ package TFG.JaimeOlga.screens.gameScreens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -21,7 +23,9 @@ public class OniricForestScreen implements Screen {
 
     private Main game;
     private OrthographicCamera camera;
+    private OrthographicCamera hudCamera; // Cámara fija para el HUD
     private Viewport viewport;
+    private ShapeRenderer shapeRenderer;
 
     private Player player;
     private ItemController itemController;
@@ -50,6 +54,13 @@ public class OniricForestScreen implements Screen {
         camera = new OrthographicCamera();
         viewport = new FitViewport(GAME_WIDTH, GAME_HEIGHT, camera);
         camera.position.set(GAME_WIDTH / 2f, GAME_HEIGHT / 2f, 0);
+
+        // Configurar cámara HUD (fija, no se mueve con el jugador)
+        hudCamera = new OrthographicCamera();
+        hudCamera.setToOrtho(false, GAME_WIDTH, GAME_HEIGHT);
+
+        // Inicializar ShapeRenderer para dibujar formas (barras de vida)
+        shapeRenderer = new ShapeRenderer();
     }
 
     @Override
@@ -74,13 +85,7 @@ public class OniricForestScreen implements Screen {
         // Renderizar el mapa de Tiled primero (fondo)
         mapController.render(camera);
 
-        game.batch.begin();
-
-        player.draw(game.batch);
-        itemController.draw(game.batch);
-        enemyController.draw(game.batch);
-
-        game.batch.end();
+        draw();
     }
 
     public void update(float delta) {
@@ -100,6 +105,19 @@ public class OniricForestScreen implements Screen {
         camera.position.x = player.getxPosition();
         camera.position.y = player.getyPosition();
         camera.update();
+    }
+
+    private void draw() {
+        game.batch.begin();
+
+        player.draw(game.batch);
+        itemController.draw(game.batch);
+        enemyController.draw(game.batch);
+
+        game.batch.end();
+
+        // Dibujar HUD (vida del jugador) después de todo lo demás
+        drawPlayerHealth();
     }
 
     /**
@@ -122,6 +140,40 @@ public class OniricForestScreen implements Screen {
         }
     }
 
+    /**
+     * Dibuja la barra de vida del jugador en la esquina superior izquierda.
+     * Usa ShapeRenderer con una cámara HUD fija.
+     */
+    private void drawPlayerHealth() {
+        // Usar la cámara HUD para que la vida esté fija en pantalla
+        shapeRenderer.setProjectionMatrix(hudCamera.combined);
+
+        // Configuración de la barra de vida
+        float barX = 20; // Posición X (margen izquierdo)
+        float barY = GAME_HEIGHT - 40; // Posición Y (arriba con margen)
+        float barWidth = 200; // Ancho total de la barra
+        float barHeight = 20; // Alto de la barra
+
+        // Calcular el porcentaje de vida actual
+        float healthPercent = (float) player.getHealth() / player.getMaxHealth();
+
+        // Dibujar fondo de la barra (gris oscuro)
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.DARK_GRAY);
+        shapeRenderer.rect(barX, barY, barWidth, barHeight);
+
+        // Dibujar la vida actual (rojo)
+        shapeRenderer.setColor(Color.RED);
+        shapeRenderer.rect(barX, barY, barWidth * healthPercent, barHeight);
+        shapeRenderer.end();
+
+        // Dibujar borde de la barra (blanco)
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setColor(Color.WHITE);
+        shapeRenderer.rect(barX, barY, barWidth, barHeight);
+        shapeRenderer.end();
+    }
+
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
@@ -141,5 +193,8 @@ public class OniricForestScreen implements Screen {
 
     @Override
     public void dispose() {
+        if (shapeRenderer != null) {
+            shapeRenderer.dispose();
+        }
     }
 }

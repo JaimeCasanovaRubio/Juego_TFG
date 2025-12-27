@@ -31,9 +31,9 @@ public class Entity {
     protected boolean invincible = false;
     protected float invincibleTimer = 0;
 
-    boolean attack = false;
-    int hitAnimationTimer;
-    int attackTimer;
+    protected boolean attack = false;
+    protected float hitAnimationTimer;
+    protected int attackTimer;
 
     public Entity(float xPosition, float yPosition) {
         this.dead = false;
@@ -121,24 +121,12 @@ public class Entity {
             }
         }
         updatePosition(collisionManager);
+        updateAnimation();
         stateTime += deltaTime;
 
     }
 
     public void updateAnimation() {
-        if (dead) {
-            setAnimation(2);
-            return;
-        }
-        if (attackTimer > 0) {
-            setAnimation(5);
-            return;
-        }
-        // Mostrar animación de daño mientras el temporizador esté activo
-        if (hitAnimationTimer > 0) {
-            setAnimation(2);
-            return; // Importante: no continuar para que no se sobrescriba
-        }
 
     }
 
@@ -158,9 +146,12 @@ public class Entity {
     // Gestión daño
     public void takeDamage(int damage) {
         if (!invincible) {
+
             health -= damage;
             invincible = true;
             invincibleTimer = 1f; // 1 segundos de invencibilidad
+            hitAnimationTimer = 0.5f; // Mostrar animación de daño durante 0.5 segundos
+            stateTime = 0f; // Reiniciar la animación desde el principio
             if (health <= 0) {
                 dead = true;
             }
@@ -304,7 +295,7 @@ public class Entity {
         this.attack = attack;
     }
 
-    public int getHitAnimationTimer() {
+    public float getHitAnimationTimer() {
         return hitAnimationTimer;
     }
 

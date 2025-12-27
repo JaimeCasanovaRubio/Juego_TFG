@@ -26,7 +26,6 @@ public class BaseScreen implements Screen {
     private MapController mapController;
     private InputController inputController;
 
-    // Resolución del juego (acordar con Olga)
     public static final int GAME_WIDTH = 1280;
     public static final int GAME_HEIGHT = 720;
 

@@ -47,18 +47,40 @@ public class GroundEnemy extends Entity {
     }
 
     protected void loadAnimations() {
-
+        // Índice 0: RUN (para cuando se mueve)
+        addAnimation(PLAYER_RUN, getSpriteCount(RUN), 0.07f);
+        // Índice 1: IDLE (cuando está quieto)
         addAnimation(PLAYER_IDLE, getSpriteCount(IDLE), 0.07f);
+        // Índice 2: HIT (cuando recibe daño)
+        addAnimation(PLAYER_HIT, getSpriteCount(HIT), 0.07f);
     }
 
     public void update(float delta, CollisionManager collisionManager, Rectangle playerHitbox) {
         super.update(delta, collisionManager);
+
+        // Actualizar la animación según el estado actual
+        updateAnimation();
 
         checkZone(playerHitbox);
         patrol(delta, collisionManager);
 
         // Actualizar el hitbox después de mover
         updateHitbox();
+    }
+
+    @Override
+    public void updateAnimation() {
+        if (dead) {
+            setAnimation(2); // Usar animación HIT para muerte
+            return;
+        }
+        // Mostrar animación de daño mientras el temporizador esté activo
+        if (hitAnimationTimer > 0) {
+            setAnimation(2); // HIT
+            return;
+        }
+        // Si se está moviendo, usar animación de correr
+        setAnimation(0); // RUN (el enemigo siempre está patrullando)
     }
 
     public void patrol(float delta, CollisionManager collisionManager) {
@@ -138,6 +160,15 @@ public class GroundEnemy extends Entity {
         }
         if (downZone.overlaps(playerHitbox)) {
             movingUp = false; // Ir hacia abajo donde está el jugador
+        }
+    }
+
+    @Override
+    public void takeDamage(int damage) {
+        if (!invincible) {
+            hitAnimationTimer = 0.5f; // Mostrar animación de daño durante 0.5 segundos
+            super.takeDamage(damage);
+            stateTime = 0f; // Reiniciar la animación desde el principio
         }
     }
 
