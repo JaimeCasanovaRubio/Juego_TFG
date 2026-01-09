@@ -189,10 +189,10 @@ public class OniricForestScreen implements Screen {
             if (player.getHitbox().overlaps(enemy.getHitbox())) {
                 if (player.isAttack()) {
                     // Jugador atacando -> daño al enemigo
-                    enemy.takeDamage(1);
+                    enemy.takeDamage(player.getDamage());
                 } else {
                     // Jugador no atacando -> daño al jugador
-                    player.takeDamage(1);
+                    player.takeDamage(enemy.getDamage());
                 }
             }
         }

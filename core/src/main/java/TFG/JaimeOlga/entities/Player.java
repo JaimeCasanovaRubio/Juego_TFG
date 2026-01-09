@@ -1,11 +1,15 @@
 package TFG.JaimeOlga.entities;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 import TFG.JaimeOlga.controllers.CollisionManager;
+
+import TFG.JaimeOlga.items.Item;
 
 import static TFG.JaimeOlga.utils.Cons.*;
 import static TFG.JaimeOlga.utils.Cons.Images.*;
@@ -245,4 +249,5 @@ public class Player extends Entity {
     public void setAttack(boolean attack) {
         this.attack = attack;
     }
+
 }

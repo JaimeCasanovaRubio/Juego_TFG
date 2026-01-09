@@ -44,6 +44,7 @@ public class Cons {
         // OBJECTS
         public static final String FLORERO = "tileSet/3 Objects/Boxes/florero.png";
         public static final String STONE = "tileSet/3 Objects/Stones/3.png";
+        public static final String SWORD = "assets/tileSet/3 Objects/Boxes/5.png";
 
         // MAPS
         public static final String MAP_BASE = "maps/base.tmx";

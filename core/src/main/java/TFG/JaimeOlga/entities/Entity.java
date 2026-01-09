@@ -27,6 +27,7 @@ public class Entity {
 
     protected int health;
     protected int maxHealth;
+    protected int damage;
     protected boolean dead;
     protected boolean invincible = false;
     protected float invincibleTimer = 0;
@@ -38,6 +39,7 @@ public class Entity {
     public Entity(float xPosition, float yPosition) {
         this.dead = false;
         this.maxHealth = 3;
+        this.damage = 1;
         this.health = maxHealth;
         this.xPosition = xPosition;
         this.yPosition = yPosition;
@@ -309,6 +311,14 @@ public class Entity {
 
     public void setAttackTimer(int attackTimer) {
         this.attackTimer = attackTimer;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
 }

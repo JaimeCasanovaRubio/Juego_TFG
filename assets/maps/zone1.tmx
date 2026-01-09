@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="37">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="39">
  <tileset firstgid="1" source="tileSet.tsx"/>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="csv">
@@ -57,5 +57,11 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="9" name="items"/>
+ <objectgroup id="9" name="items">
+  <object id="37" x="449.518" y="807.709" width="17.791" height="26.0934">
+   <properties>
+    <property name="type" value="sword"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

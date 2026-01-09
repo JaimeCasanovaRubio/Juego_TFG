@@ -17,6 +17,7 @@ import TFG.JaimeOlga.items.Florero;
 import TFG.JaimeOlga.items.Heart;
 import TFG.JaimeOlga.items.Item;
 import TFG.JaimeOlga.items.Stone;
+import TFG.JaimeOlga.items.Sword;
 import TFG.JaimeOlga.Main;
 
 public class ItemController {
@@ -75,6 +76,9 @@ public class ItemController {
                         break;
                     case "florero":
                         items.add(new Florero(x, y));
+                        break;
+                    case "sword":
+                        items.add(new Sword(x, y));
                         break;
                     // Añadir más tipos aquí:
                     // case "speedboost":
