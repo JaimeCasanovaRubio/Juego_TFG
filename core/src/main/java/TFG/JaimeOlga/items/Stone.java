@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 import TFG.JaimeOlga.Main;
 import TFG.JaimeOlga.entities.Player;
+import static TFG.JaimeOlga.utils.Cons.Images.*;
 
 public class Stone extends Item {
 
@@ -13,7 +14,7 @@ public class Stone extends Item {
 
     @Override
     protected void loadTexture() {
-        texture = new Texture("assets/tileSet/3 Objects/Stones/3.png");
+        texture = new Texture(STONE);
 
     }
 

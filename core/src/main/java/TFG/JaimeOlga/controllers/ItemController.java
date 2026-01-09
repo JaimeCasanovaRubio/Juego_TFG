@@ -75,7 +75,6 @@ public class ItemController {
                         break;
                     case "florero":
                         items.add(new Florero(x, y));
-                        System.out.println("FLORERO");
                         break;
                     // Añadir más tipos aquí:
                     // case "speedboost":

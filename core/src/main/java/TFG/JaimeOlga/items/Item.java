@@ -24,9 +24,15 @@ public abstract class Item {
     public Item(float xPosition, float yPosition) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
-        this.width = 16 * SCALE; // Tamaño por defecto
-        this.height = 16 * SCALE;
-        loadTexture();
+        loadTexture(); // Cargar textura primero
+        // Usar las dimensiones reales de la textura
+        if (texture != null) {
+            this.width = texture.getWidth() * SCALE;
+            this.height = texture.getHeight() * SCALE;
+        } else {
+            this.width = 16 * SCALE; // Tamaño por defecto si no hay textura
+            this.height = 16 * SCALE;
+        }
         initHitbox();
     }
 

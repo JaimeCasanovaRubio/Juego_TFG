@@ -42,7 +42,9 @@ public class Cons {
         public static final int FALL = 6;
 
         // OBJECTS
-        public static final String FLORERO = "tileSet/3 Objects/florero.png";
+        public static final String FLORERO = "tileSet/3 Objects/Boxes/florero.png";
+        public static final String STONE = "tileSet/3 Objects/Stones/3.png";
+
         // MAPS
         public static final String MAP_BASE = "maps/base.tmx";
         public static final String MAP_ZONE1 = "maps/zone1.tmx";
