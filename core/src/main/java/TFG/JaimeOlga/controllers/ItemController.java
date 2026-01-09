@@ -100,9 +100,11 @@ public class ItemController {
             Item item = iterator.next();
 
             // Si el jugador toca el item, recogerlo
-            if (!item.isCollected() && item.getHitbox().overlaps(playerHitbox)) {
-                item.collect(player, game);
+            if (item.collectable) {
+                if (!item.isCollected() && item.getHitbox().overlaps(playerHitbox)) {
+                    item.collect(player, game);
 
+                }
             }
 
             // Eliminar items recogidos de la lista

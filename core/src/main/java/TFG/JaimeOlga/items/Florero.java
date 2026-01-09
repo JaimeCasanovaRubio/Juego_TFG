@@ -10,6 +10,7 @@ public class Florero extends Item {
 
     public Florero(float xPosition, float yPosition) {
         super(xPosition, yPosition);
+        collectable = false;
     }
 
     @Override

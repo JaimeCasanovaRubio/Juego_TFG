@@ -20,6 +20,7 @@ public abstract class Item {
     protected Rectangle hitbox;
     protected Texture texture;
     protected boolean collected = false;
+    public boolean collectable = true;
 
     public Item(float xPosition, float yPosition) {
         this.xPosition = xPosition;
