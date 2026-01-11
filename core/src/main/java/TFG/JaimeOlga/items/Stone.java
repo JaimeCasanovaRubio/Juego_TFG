@@ -2,7 +2,7 @@ package TFG.JaimeOlga.items;
 
 import com.badlogic.gdx.graphics.Texture;
 
-import TFG.JaimeOlga.Main;
+import TFG.JaimeOlga.GameController;
 import TFG.JaimeOlga.entities.Player;
 import static TFG.JaimeOlga.utils.Cons.Images.*;
 
@@ -19,7 +19,7 @@ public class Stone extends Item {
     }
 
     @Override
-    public void applyEffect(Main game, Player player) {
+    public void applyEffect(GameController game, Player player) {
         player.setxPosition(600);
         player.setyPosition(400);
         game.changeScreen(game.oniricForestScreen);
@@ -30,7 +30,7 @@ public class Stone extends Item {
     }
 
     @Override
-    public void applyEffect(Main game) {
+    public void applyEffect(GameController game) {
     }
 
 }

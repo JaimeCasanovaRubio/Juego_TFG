@@ -2,41 +2,56 @@ package TFG.JaimeOlga.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import TFG.JaimeOlga.GameController;
-
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
-public class MenuScreen implements Screen {
+import TFG.JaimeOlga.GameController;
+import TFG.JaimeOlga.entities.Player;
+import TFG.JaimeOlga.screens.gameScreens.BaseScreen;
+
+public class DeadScreen implements Screen {
 
     private GameController game;
     private BitmapFont font;
+    private Player player;
 
-    public MenuScreen(GameController game) {
+    public DeadScreen(GameController game, Player player) {
         this.game = game;
         this.font = new BitmapFont();
-
+        this.player = player;
     }
 
     @Override
     public void show() {
-        // Se llama cuando la pantalla se muestra
-    }
 
-    @Override
-    public void render(float delta) {
-        // Limpiar pantalla con color oscuro
         Gdx.gl.glClearColor(0.1f, 0.1f, 0.15f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
-        font.draw(game.batch, "RESTAURANTE ALIENIGENA", 100, 400);
-        font.draw(game.batch, "Pulsa ENTER para jugar", 100, 300);
+        font.draw(game.batch, "Has muerto", 100, 400);
+        font.draw(game.batch, "Pulsa ENTER para volver", 100, 300);
         game.batch.end();
 
         // Detectar input para cambiar de pantalla
         if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.ENTER)) {
             game.changeScreen(game.baseScreen);
+        }
+
+    }
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(0.1f, 0.1f, 0.15f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        game.batch.begin();
+        font.draw(game.batch, "Has muerto", 100, 400);
+        font.draw(game.batch, "Pulsa ENTER para volver", 100, 300);
+        game.batch.end();
+
+        // Detectar input para cambiar de pantalla
+        if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.ENTER)) {
+            game.changeScreen(new BaseScreen(game, player));
         }
     }
 
@@ -58,6 +73,5 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
-        font.dispose();
     }
 }

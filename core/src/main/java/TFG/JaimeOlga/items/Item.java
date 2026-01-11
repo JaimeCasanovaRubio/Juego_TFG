@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-import TFG.JaimeOlga.Main;
+import TFG.JaimeOlga.GameController;
 import TFG.JaimeOlga.entities.Player;
 import static TFG.JaimeOlga.utils.Cons.SCALE;
 
@@ -59,14 +59,14 @@ public abstract class Item {
      * Aplica el efecto del item al juego, como para cambiar mapa o pantalla.
      * Cada tipo de item implementa su propio efecto.
      */
-    public abstract void applyEffect(Main game);
+    public abstract void applyEffect(GameController game);
 
-    public abstract void applyEffect(Main game, Player player);
+    public abstract void applyEffect(GameController game, Player player);
 
     /**
      * Llamado cuando el jugador colisiona con el item.
      */
-    public void collect(Player player, Main game) {
+    public void collect(Player player, GameController game) {
         if (!collected) {
             applyEffect(player);
             applyEffect(game);

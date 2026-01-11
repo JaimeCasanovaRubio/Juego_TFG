@@ -18,13 +18,13 @@ import TFG.JaimeOlga.items.Heart;
 import TFG.JaimeOlga.items.Item;
 import TFG.JaimeOlga.items.Stone;
 import TFG.JaimeOlga.items.Sword;
-import TFG.JaimeOlga.Main;
+import TFG.JaimeOlga.GameController;
 
 public class ItemController {
     private ArrayList<Item> items;
-    private Main game;
+    private GameController game;
 
-    public ItemController(Main game) {
+    public ItemController(GameController game) {
         this.items = new ArrayList<>();
         this.game = game;
     }

@@ -3,14 +3,14 @@ package TFG.JaimeOlga.controllers;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import TFG.JaimeOlga.entities.Player;
-import TFG.JaimeOlga.Main;
+import TFG.JaimeOlga.GameController;
 
 public class InputController implements InputProcessor {
     private Player player;
-    private Main game;
+    private GameController game;
     public static boolean debugMode = false; // Toggle con F3
 
-    public InputController(Player player, Main game) {
+    public InputController(Player player, GameController game) {
         this.player = player;
         this.game = game;
     }

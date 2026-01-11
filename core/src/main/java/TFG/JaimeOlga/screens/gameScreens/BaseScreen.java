@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import TFG.JaimeOlga.Main;
+import TFG.JaimeOlga.GameController;
 import TFG.JaimeOlga.controllers.InputController;
 import TFG.JaimeOlga.controllers.ItemController;
 import TFG.JaimeOlga.controllers.MapController;
@@ -17,7 +17,7 @@ import static TFG.JaimeOlga.utils.Cons.Images.MAP_BASE;
 
 public class BaseScreen implements Screen {
 
-    private Main game;
+    private GameController game;
     private OrthographicCamera camera;
     private Viewport viewport;
 
@@ -29,7 +29,7 @@ public class BaseScreen implements Screen {
     public static final int GAME_WIDTH = 1280;
     public static final int GAME_HEIGHT = 720;
 
-    public BaseScreen(Main game, Player player) {
+    public BaseScreen(GameController game, Player player) {
         this.game = game;
 
         this.player = player;

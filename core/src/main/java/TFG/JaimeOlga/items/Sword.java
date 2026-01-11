@@ -3,7 +3,7 @@ package TFG.JaimeOlga.items;
 import com.badlogic.gdx.graphics.Texture;
 import static TFG.JaimeOlga.utils.Cons.Images.*;
 
-import TFG.JaimeOlga.Main;
+import TFG.JaimeOlga.GameController;
 import TFG.JaimeOlga.entities.Player;
 
 public class Sword extends Item {
@@ -23,12 +23,12 @@ public class Sword extends Item {
     }
 
     @Override
-    public void applyEffect(Main game) {
+    public void applyEffect(GameController game) {
         // TODO Auto-generated method stub
     }
 
     @Override
-    public void applyEffect(Main game, Player player) {
+    public void applyEffect(GameController game, Player player) {
         // TODO Auto-generated method stub
     }
 }

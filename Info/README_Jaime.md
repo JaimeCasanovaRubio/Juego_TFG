@@ -682,3 +682,165 @@ public class GameManager {
 ---
 
 **¡Buena suerte con la implementación!** 🚀
+
+---
+
+## 🌟 PRÓXIMOS PASOS - Basado en la Nueva Idea Top-Down Roguelike
+
+> **Nota:** El proyecto ha evolucionado hacia un **juego roguelike top-down** con estética inspirada en **Cult of the Lamb**. A continuación se detallan las funcionalidades pendientes basadas en el documento de diseño.
+
+---
+
+### 🎮 Estructura General del Mundo
+
+El juego consiste en un **mundo explorable por zonas**, todas compartiendo una base de bosque vivo con diferentes temáticas espirituales/culturales. Cada zona tiene:
+- Un **Dios Dragón** (puede ser jefe final, NPC, o estar muerto)
+- Una **idea emocional o filosófica** central
+- **Enemigos y NPCs** únicos
+
+---
+
+### 🗺️ ZONAS A IMPLEMENTAR
+
+#### Zona 1: "La Foresta de los Sueños" (Angelical/Onírico)
+- [ ] **Estética:** Bosque frondoso con luz suave, estrellas flotando, nubes bajas
+- [ ] **Paleta de colores:** Azul, blanco, dorado, azul pálido
+- [ ] **Criaturas a crear:**
+  - [ ] Ciervo blanco con alas translúcidas
+  - [ ] Búho con halo flotante y ojos brillantes (observadores del dragón)
+  - [ ] Enemigos: seres hechos del brillo del cielo
+- [ ] **Dios Dragón:** *El Dragón Onírico*
+  - [ ] Diseño: mezcla de Aurelion Sol + ángel con ojos en las alas + estética "Noche Estrellada"
+  - [ ] Lore: Su luz controla las mentes de quienes la observan demasiado
+
+#### Zona 2: "La Arboleda Farolín" (Oriental/Liyue)
+- [ ] **Estética:** Árboles con faroles, edificios con tejados chinos, luz artificial vs oscuridad del bosque
+- [ ] **Paleta de colores:** Amarillo cálido, rojo oscuro, marrón, verde musgo
+- [ ] **Criaturas a crear:**
+  - [ ] Espíritus con máscaras
+  - [ ] Gatos espirituales
+  - [ ] Animales del calendario chino
+- [ ] **Dios Dragón:** *El Dragón de las Raíces Eternas*
+  - [ ] Diseño: Largo y serpentino con raíces y máscaras festivas
+  - [ ] Lore: Representa la tradición - "¿Cuándo honrar el pasado se convierte en una prisión?"
+
+#### Zona 3: "El Bosque del Crepúsculo Funerario" (Transilvania/Gótico)
+- [ ] **Estética:** Árboles retorcidos como manos, cementerios con raíces, niebla espesa
+- [ ] **Paleta de colores:** Morado, verde oscuro, negro azulado
+- [ ] **Criaturas a crear:**
+  - [ ] Murciélagos gigantes
+  - [ ] Espíritus atados a lápidas
+  - [ ] Criaturas ni vivas ni muertas
+  - [ ] Enemigos: seres que temen desaparecer
+- [ ] **Dios Dragón:** *El Dragón del Último Suspiro*
+  - [ ] Diseño: Alas de murciélago, cuerpo fragmentado, ojos que brillan al atacar
+  - [ ] Lore: Representa la muerte/final/aceptación - "Aceptar el final como parte natural de la vida"
+
+#### Zonas Adicionales (Futuro)
+- [ ] **Zona 4: El Bosque Sumergido** - Árboles bajo agua, raíces como corales, dragón anfibio
+- [ ] **Zona 5: El Bosque Calcinado** - Árboles quemados vivos, brasas, ceniza como nieve
+- [ ] **Zona 6: El Bosque del Reflejo** - Cristales en árboles, reflejos distorsionados, dragón fragmentado
+
+---
+
+### 🎨 SISTEMA DE PERSONAJES
+
+- [ ] **Editor de Personajes Leve:**
+  - [ ] El editor debe estar vinculado al **rol del personaje**
+  - [ ] Ejemplos de roles:
+    - Mujer + Mago → Capa azul + bastón
+    - Hombre + Mago → Poncho azul + bastón
+    - Monstruo + Asesino → Capa roja + cuchillo
+  - [ ] La personalización visual depende del rol seleccionado
+
+---
+
+### ⚔️ MECÁNICAS ROGUELIKE
+
+- [ ] **Sistema de muerte/despertar:**
+  - [ ] Final del juego: matar al boss y "despertar de un sueño"
+  - [ ] Sistema de runs con progresión persistente
+
+- [ ] **Sistema de combate top-down:**
+  - [ ] Mejorar el sistema actual de `Player.java` y `Entity.java`
+  - [ ] Añadir ataques especiales según rol
+
+- [ ] **Sistema de zonas:**
+  - [ ] Implementar transiciones entre zonas
+  - [ ] Guardar progreso de zonas completadas
+  - [ ] Desbloqueo progresivo de zonas
+
+---
+
+### 🐉 SISTEMA DE JEFES (DIOSES DRAGÓN)
+
+- [ ] **Clase base `DragonGod.java`:**
+  - [ ] Patrones de ataque únicos por dragón
+  - [ ] Fases de batalla
+  - [ ] Diálogos y lore
+
+- [ ] **Implementación por zona:**
+  - [ ] Dragón Onírico (Zona 1) - Ataques de luz/control mental
+  - [ ] Dragón de las Raíces Eternas (Zona 2) - Ataques de raíces/invocación
+  - [ ] Dragón del Último Suspiro (Zona 3) - Ataques fragmentados/niebla
+
+---
+
+### 🎵 AUDIO Y AMBIENTE
+
+- [ ] **Música ambiental por zona:**
+  - [ ] Zona 1: Melodía etérea, onírica
+  - [ ] Zona 2: Instrumentos orientales, percusión suave
+  - [ ] Zona 3: Órgano, sonidos góticos
+  
+- [ ] **Efectos de sonido:**
+  - [ ] Combate, pasos, ambiente
+  - [ ] Sonidos únicos para cada Dios Dragón
+
+---
+
+### 📋 CHECKLIST DE IMPLEMENTACIÓN POR PRIORIDAD
+
+#### Alta Prioridad
+- [ ] Definir diseño visual base (estilo Cult of the Lamb)
+- [ ] Implementar Zona 1 como prototipo
+- [ ] Crear sistema de transición de zonas
+- [ ] Implementar primer Dios Dragón
+
+#### Media Prioridad
+- [ ] Sistema de editor de personajes
+- [ ] Implementar Zonas 2 y 3
+- [ ] Sistema de lore/diálogos
+- [ ] Más tipos de enemigos
+
+#### Baja Prioridad
+- [ ] Zonas adicionales (4, 5, 6)
+- [ ] Sistema de música dinámica
+- [ ] Achievements/logros
+- [ ] Modo historia completo
+
+---
+
+### 🔗 Archivos Clave a Modificar/Crear
+
+| Archivo | Propósito |
+|---------|-----------|
+| `entities/DragonGod.java` | Clase base para jefes |
+| `entities/ZoneEnemy.java` | Enemigos específicos por zona |
+| `controllers/ZoneController.java` | Gestión de zonas y transiciones |
+| `screens/gameScreens/ZoneScreen.java` | Pantalla específica por zona |
+| `utils/LoreManager.java` | Sistema de lore y diálogos |
+| `entities/CharacterBuilder.java` | Editor de personajes |
+
+---
+
+### 💡 Notas de Diseño
+
+> *"El bosque eterno que adopta distintas formas según el dios que lo habita."*
+
+- Todas las zonas comparten la base de **bosque vivo**
+- Cada zona **superpone** una temática espiritual/cultural
+- Los Dioses Dragón pueden tener roles diferentes:
+  - **Jefe final** de la zona
+  - **NPC** que ayuda/guía
+  - **Muerto** (lore del pasado)

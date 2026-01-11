@@ -9,8 +9,6 @@ import com.badlogic.gdx.math.Rectangle;
 
 import TFG.JaimeOlga.controllers.CollisionManager;
 
-import TFG.JaimeOlga.items.Item;
-
 import static TFG.JaimeOlga.utils.Cons.*;
 import static TFG.JaimeOlga.utils.Cons.Images.*;
 
@@ -62,9 +60,6 @@ public class Player extends Entity {
     @Override
     public void update(float deltaTime, CollisionManager collisionManager) {
 
-        if (dead) {
-            return;
-        }
         if (attackTimer > 0) {
             attackTimer -= deltaTime;
             if (attackTimer <= 0) {

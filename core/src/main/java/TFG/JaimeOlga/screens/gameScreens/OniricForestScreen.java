@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import TFG.JaimeOlga.Main;
+import TFG.JaimeOlga.GameController;
 import TFG.JaimeOlga.controllers.EnemyController;
 import TFG.JaimeOlga.controllers.InputController;
 import TFG.JaimeOlga.controllers.ItemController;
@@ -21,7 +21,7 @@ import static TFG.JaimeOlga.utils.Cons.Images.MAP_ZONE1;
 
 public class OniricForestScreen implements Screen {
 
-    private Main game;
+    private GameController game;
     private OrthographicCamera camera;
     private OrthographicCamera hudCamera; // Cámara fija para el HUD
     private Viewport viewport;
@@ -37,7 +37,7 @@ public class OniricForestScreen implements Screen {
     public static final int GAME_WIDTH = 1280;
     public static final int GAME_HEIGHT = 720;
 
-    public OniricForestScreen(Main game, Player player) {
+    public OniricForestScreen(GameController game, Player player) {
         this.game = game;
 
         this.player = player;
@@ -103,8 +103,8 @@ public class OniricForestScreen implements Screen {
         // Comprobar colisiones jugador-enemigos
         checkPlayerEnemyCollisions();
 
-        if (player.getHealth() <= 0) {
-            game.setScreen(game.settingsMenu);
+        if (player.isDead()) {
+            game.setScreen(game.deadScreen);
         }
 
         camera.position.x = player.getxPosition();

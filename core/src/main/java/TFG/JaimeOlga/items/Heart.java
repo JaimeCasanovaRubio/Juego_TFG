@@ -2,7 +2,7 @@ package TFG.JaimeOlga.items;
 
 import com.badlogic.gdx.graphics.Texture;
 
-import TFG.JaimeOlga.Main;
+import TFG.JaimeOlga.GameController;
 import TFG.JaimeOlga.entities.Player;
 
 /**
@@ -35,13 +35,13 @@ public class Heart extends Item {
     }
 
     @Override
-    public void applyEffect(Main game) {
+    public void applyEffect(GameController game) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'applyEffect'");
     }
 
     @Override
-    public void applyEffect(Main game, Player player) {
+    public void applyEffect(GameController game, Player player) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'applyEffect'");
     }

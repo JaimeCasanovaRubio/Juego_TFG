@@ -5,7 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import TFG.JaimeOlga.entities.Player;
-import TFG.JaimeOlga.screens.GameOverScreen;
+import TFG.JaimeOlga.screens.DeadScreen;
 import TFG.JaimeOlga.screens.MenuScreen;
 import TFG.JaimeOlga.screens.SettingsMenu;
 import TFG.JaimeOlga.screens.gameScreens.BaseScreen;
@@ -15,7 +15,7 @@ import TFG.JaimeOlga.screens.gameScreens.OniricForestScreen;
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all
  * platforms.
  */
-public class Main extends Game {
+public class GameController extends Game {
     public SpriteBatch batch;
     public Player player;
 
@@ -23,8 +23,8 @@ public class Main extends Game {
     public MenuScreen menuScreen;
     public OniricForestScreen oniricForestScreen;
     public SettingsMenu settingsMenu;
-    public GameOverScreen gameoverScreen;
     public BaseScreen baseScreen;
+    public DeadScreen deadScreen;
 
     @Override
     public void create() {
@@ -32,14 +32,8 @@ public class Main extends Game {
         batch = new SpriteBatch();
         player = new Player(200, 300);
 
-        // Pantallas del menu
-        menuScreen = new MenuScreen(this);
-        settingsMenu = new SettingsMenu(this);
-        gameoverScreen = new GameOverScreen(this);
+        createScreens();
 
-        // Pantallas del juego
-        oniricForestScreen = new OniricForestScreen(this, player);
-        baseScreen = new BaseScreen(this, player);
         setScreen(menuScreen);
     }
 
@@ -50,7 +44,23 @@ public class Main extends Game {
     public void changeScreen(Screen screen) {
         // Game.setScreen() llama hide() en la anterior y show() en la nueva
         // NO hace dispose() automáticamente, así que las pantallas se reutilizan
+        if (player.isDead()) {
+            createScreens();
+            player.setDead(false);
+        }
         super.setScreen(screen);
+
+    }
+
+    private void createScreens() {
+        // Pantallas del menu
+        menuScreen = new MenuScreen(this);
+        settingsMenu = new SettingsMenu(this);
+
+        // Pantallas del juego
+        oniricForestScreen = new OniricForestScreen(this, player);
+        baseScreen = new BaseScreen(this, player);
+        deadScreen = new DeadScreen(this, player);
     }
 
     @Override

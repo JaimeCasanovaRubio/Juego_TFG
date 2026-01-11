@@ -5,13 +5,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
-import TFG.JaimeOlga.Main;
+import TFG.JaimeOlga.GameController;
 
 public class SettingsMenu implements Screen {
-    private Main game;
+    private GameController game;
     private BitmapFont font;
 
-    public SettingsMenu(Main game) {
+    public SettingsMenu(GameController game) {
         this.game = game;
         this.font = new BitmapFont();
     }
