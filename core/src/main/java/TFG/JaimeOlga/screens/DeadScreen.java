@@ -24,19 +24,6 @@ public class DeadScreen implements Screen {
     @Override
     public void show() {
 
-        Gdx.gl.glClearColor(0.1f, 0.1f, 0.15f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        game.batch.begin();
-        font.draw(game.batch, "Has muerto", 100, 400);
-        font.draw(game.batch, "Pulsa ENTER para volver", 100, 300);
-        game.batch.end();
-
-        // Detectar input para cambiar de pantalla
-        if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.ENTER)) {
-            game.changeScreen(game.baseScreen);
-        }
-
     }
 
     @Override

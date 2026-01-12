@@ -5,16 +5,26 @@ import com.badlogic.gdx.Screen;
 import TFG.JaimeOlga.GameController;
 
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+
+import static TFG.JaimeOlga.utils.Cons.Images.*;
 
 public class MenuScreen implements Screen {
 
     private GameController game;
     private BitmapFont font;
+    private OrthographicCamera camera;
+    private Viewport viewport;
 
     public MenuScreen(GameController game) {
         this.game = game;
         this.font = new BitmapFont();
+        camera = new OrthographicCamera();
+        viewport = new FitViewport(GAME_WIDTH, GAME_HEIGHT, camera);
+        camera.position.set(GAME_WIDTH / 2f, GAME_HEIGHT / 2f, 0);
 
     }
 
@@ -42,6 +52,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
+        viewport.update(width, height);
     }
 
     @Override

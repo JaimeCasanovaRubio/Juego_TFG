@@ -50,6 +50,9 @@ public class Cons {
         public static final String MAP_BASE = "maps/base.tmx";
         public static final String MAP_ZONE1 = "maps/zone1.tmx";
 
+        public static final int GAME_WIDTH = 1280;
+        public static final int GAME_HEIGHT = 720;
+
         public static int getSpriteCount(int state) {
             switch (state) {
                 case JUMP:

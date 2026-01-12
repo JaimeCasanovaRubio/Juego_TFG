@@ -13,7 +13,7 @@ import TFG.JaimeOlga.controllers.ItemController;
 import TFG.JaimeOlga.controllers.MapController;
 import TFG.JaimeOlga.entities.Player;
 
-import static TFG.JaimeOlga.utils.Cons.Images.MAP_BASE;
+import static TFG.JaimeOlga.utils.Cons.Images.*;
 
 public class BaseScreen implements Screen {
 
@@ -25,9 +25,6 @@ public class BaseScreen implements Screen {
     private ItemController itemController;
     private MapController mapController;
     private InputController inputController;
-
-    public static final int GAME_WIDTH = 1280;
-    public static final int GAME_HEIGHT = 720;
 
     public BaseScreen(GameController game, Player player) {
         this.game = game;

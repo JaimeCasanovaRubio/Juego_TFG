@@ -26,6 +26,9 @@ public class GameController extends Game {
     public BaseScreen baseScreen;
     public DeadScreen deadScreen;
 
+    public Screen currentScreen;
+    public Screen lastScreen;
+
     @Override
     public void create() {
 
@@ -47,7 +50,11 @@ public class GameController extends Game {
         if (player.isDead()) {
             createScreens();
             player.setDead(false);
+            player.setHealth(player.getMaxHealth());
         }
+
+        lastScreen = currentScreen;
+        currentScreen = screen;
         super.setScreen(screen);
 
     }

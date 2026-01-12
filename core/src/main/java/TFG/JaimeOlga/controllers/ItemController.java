@@ -81,6 +81,7 @@ public class ItemController {
                         items.add(new Sword(x, y));
                         break;
                     case "random":
+                        System.out.println("Generando item random");
                         randomItem(x, y);
                         break;
                     // Añadir más tipos aquí:
@@ -97,7 +98,7 @@ public class ItemController {
     }
 
     private void randomItem(float x, float y) {
-        int random = (int) (Math.random() * 100);
+        int random = (int) (Math.random() * 3);
         switch (random) {
             case 1:
                 items.add(new Coin(x, y, 10));
@@ -106,9 +107,6 @@ public class ItemController {
                 items.add(new Heart(x, y, 1));
                 break;
             case 3:
-                items.add(new Florero(x, y));
-                break;
-            case 4:
                 items.add(new Sword(x, y));
                 break;
             default:

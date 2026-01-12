@@ -17,6 +17,7 @@ public class InputController implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        // MOVIMIENTO
         if (keycode == Keys.A) {
             player.setLeft(true);
         } else if (keycode == Keys.D) {
@@ -32,7 +33,8 @@ public class InputController implements InputProcessor {
             System.out.println("Debug mode: " + (debugMode ? "ON" : "OFF"));
         }
         if (keycode == Keys.ESCAPE) {
-            if (game.getScreen() == game.oniricForestScreen) {
+            if (game.getScreen() == game.oniricForestScreen ||
+                    game.getScreen() == game.baseScreen) {
                 game.setScreen(game.settingsMenu);
             }
         }
