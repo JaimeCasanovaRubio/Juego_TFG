@@ -38,6 +38,8 @@ public class DeadScreen implements Screen {
 
         // Detectar input para cambiar de pantalla
         if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.ENTER)) {
+            player.setxPosition(200);
+            player.setyPosition(300);
             game.changeScreen(new BaseScreen(game, player));
         }
     }

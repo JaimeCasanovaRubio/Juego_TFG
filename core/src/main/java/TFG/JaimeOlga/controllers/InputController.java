@@ -35,7 +35,7 @@ public class InputController implements InputProcessor {
         if (keycode == Keys.ESCAPE) {
             if (game.getScreen() == game.oniricForestScreen ||
                     game.getScreen() == game.baseScreen) {
-                game.setScreen(game.settingsMenu);
+                game.changeScreen(game.settingsMenu);
             }
         }
         return true;

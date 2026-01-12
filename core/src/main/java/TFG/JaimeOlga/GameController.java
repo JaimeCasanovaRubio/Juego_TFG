@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import TFG.JaimeOlga.entities.Player;
+import TFG.JaimeOlga.screens.ControlsScreen;
 import TFG.JaimeOlga.screens.DeadScreen;
 import TFG.JaimeOlga.screens.MenuScreen;
 import TFG.JaimeOlga.screens.SettingsMenu;
@@ -25,6 +26,7 @@ public class GameController extends Game {
     public SettingsMenu settingsMenu;
     public BaseScreen baseScreen;
     public DeadScreen deadScreen;
+    public ControlsScreen controlsScreen;
 
     public Screen currentScreen;
     public Screen lastScreen;
@@ -35,7 +37,7 @@ public class GameController extends Game {
         batch = new SpriteBatch();
         player = new Player(200, 300);
 
-        createScreens();
+        setUpGame();
 
         setScreen(menuScreen);
     }
@@ -48,21 +50,29 @@ public class GameController extends Game {
         // Game.setScreen() llama hide() en la anterior y show() en la nueva
         // NO hace dispose() automáticamente, así que las pantallas se reutilizan
         if (player.isDead()) {
-            createScreens();
+            setUpGame();
             player.setDead(false);
             player.setHealth(player.getMaxHealth());
         }
 
         lastScreen = currentScreen;
         currentScreen = screen;
+
         super.setScreen(screen);
 
     }
 
-    private void createScreens() {
+    public void setUpGame() {
+        // Establecer jugador
+        player.setxPosition(200);
+        player.setyPosition(300);
+        player.setHealth(player.getMaxHealth());
+        player.setDead(false);
+
         // Pantallas del menu
         menuScreen = new MenuScreen(this);
         settingsMenu = new SettingsMenu(this);
+        controlsScreen = new ControlsScreen(this);
 
         // Pantallas del juego
         oniricForestScreen = new OniricForestScreen(this, player);

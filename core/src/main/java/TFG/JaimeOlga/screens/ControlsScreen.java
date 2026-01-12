@@ -1,15 +1,19 @@
 package TFG.JaimeOlga.screens;
 
+import static TFG.JaimeOlga.utils.Cons.Images.GAME_HEIGHT;
+import static TFG.JaimeOlga.utils.Cons.Images.GAME_WIDTH;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+
+import TFG.JaimeOlga.GameController;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -17,11 +21,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import TFG.JaimeOlga.GameController;
+public class ControlsScreen implements Screen {
 
-import static TFG.JaimeOlga.utils.Cons.Images.*;
-
-public class SettingsMenu implements Screen {
     private GameController game;
     private OrthographicCamera camera;
     private Viewport viewport;
@@ -30,10 +31,7 @@ public class SettingsMenu implements Screen {
     private Stage stage;
     private Skin skin;
 
-    // Volumen actual (0 a 1)
-    private float volumeLevel = 0.5f;
-
-    public SettingsMenu(GameController game) {
+    public ControlsScreen(GameController game) {
         this.game = game;
 
         // Configurar cámara y viewport
@@ -55,58 +53,30 @@ public class SettingsMenu implements Screen {
         mainTable.center();
 
         // Título
-        Label titleLabel = new Label("AJUSTES", skin);
+        Label titleLabel = new Label("Controles", skin);
         titleLabel.setFontScale(2f);
         mainTable.add(titleLabel).padBottom(50).row();
 
-        // --- Botón: Volver a Base ---
-        TextButton btnBase = new TextButton("Volver a Base", skin);
-        btnBase.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setUpGame();
-                game.changeScreen(game.baseScreen);
-            }
-        });
-        mainTable.add(btnBase).width(200).height(50).padBottom(20).row();
+        // Controles
+        Label rightMov = new Label("Movimiento Derecha: ", skin);
+        rightMov.setFontScale(1.5f);
+        mainTable.add(rightMov).padBottom(20).row();
 
-        // --- Control de Volumen ---
-        Label volumeLabel = new Label("Volumen:", skin);
-        mainTable.add(volumeLabel).padBottom(5).row();
+        Label leftMov = new Label("Movimiento Izquierda: ", skin);
+        leftMov.setFontScale(1.5f);
+        mainTable.add(leftMov).padBottom(20).row();
 
-        // Crear slider horizontal (min 0, max 1, step 0.1, horizontal)
-        final Slider volumeSlider = new Slider(0f, 1f, 0.1f, false, skin);
-        volumeSlider.setValue(volumeLevel);
-        volumeSlider.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                volumeLevel = volumeSlider.getValue();
-                // Aquí puedes aplicar el volumen a tu sistema de audio
-                // Por ejemplo: MusicManager.setVolume(volumeLevel);
-                Gdx.app.log("Settings", "Volumen: " + (int) (volumeLevel * 100) + "%");
-            }
-        });
-        mainTable.add(volumeSlider).width(200).height(30).padBottom(20).row();
+        Label upMov = new Label("Movimiento Arriba: ", skin);
+        upMov.setFontScale(1.5f);
+        mainTable.add(upMov).padBottom(20).row();
 
-        // Label que muestra el porcentaje de volumen
-        final Label volumeValueLabel = new Label((int) (volumeLevel * 100) + "%", skin);
-        volumeSlider.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                volumeValueLabel.setText((int) (volumeSlider.getValue() * 100) + "%");
-            }
-        });
-        mainTable.add(volumeValueLabel).padBottom(20).row();
+        Label downMov = new Label("Movimiento Abajo: ", skin);
+        downMov.setFontScale(1.5f);
+        mainTable.add(downMov).padBottom(20).row();
 
-        // --- Botón: Configurar Controles ---
-        TextButton btnControls = new TextButton("Configurar Controles", skin);
-        btnControls.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.changeScreen(game.controlsScreen);
-            }
-        });
-        mainTable.add(btnControls).width(200).height(50).padBottom(20).row();
+        Label attackMov = new Label("Ataque: ", skin);
+        attackMov.setFontScale(1.5f);
+        mainTable.add(attackMov).padBottom(20).row();
 
         // --- Botón: Volver (a la pantalla anterior) ---
         TextButton btnBack = new TextButton("Volver", skin);
@@ -158,13 +128,9 @@ public class SettingsMenu implements Screen {
 
     @Override
     public void hide() {
-        // Limpiar el InputProcessor cuando salimos de esta pantalla
-        Gdx.input.setInputProcessor(null);
     }
 
     @Override
     public void dispose() {
-        stage.dispose();
-        skin.dispose();
     }
 }

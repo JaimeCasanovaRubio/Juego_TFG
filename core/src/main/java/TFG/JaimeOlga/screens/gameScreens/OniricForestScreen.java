@@ -71,7 +71,7 @@ public class OniricForestScreen implements Screen {
         update(delta);
 
         // 2. Limpiar pantalla
-        Gdx.gl.glClearColor(0.2f, 0.2f, 0.3f, 1);
+        Gdx.gl.glClearColor(0.1f, 0.1f, 0.15f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // 3. Dibujar
