@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="17" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="45">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="17" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="50">
  <tileset firstgid="1" source="tileSet.tsx"/>
  <imagelayer id="10" name="Capa de Imagen 1" offsetx="-257.306" offsety="-40.7092">
   <image source="suelo basee.png" width="1280" height="720"/>
@@ -9,6 +9,8 @@
   <object id="2" x="3.66667" y="63.333" width="59" height="474"/>
   <object id="3" x="63.8333" y="479.5" width="519" height="61"/>
   <object id="4" x="586.042" y="6.667" width="58" height="538"/>
+  <object id="45" x="84.7998" y="146.568" width="36.6419" height="33.5011"/>
+  <object id="46" x="82.7059" y="219.851" width="35.595" height="32.4542"/>
  </objectgroup>
  <objectgroup id="3" name="items">
   <object id="38" x="290.796" y="368.669" width="22" height="26">
@@ -16,7 +18,7 @@
     <property name="type" value="stone"/>
    </properties>
   </object>
-  <object id="39" x="561.413" y="115.866" width="51.2986" height="45.0172">
+  <object id="39" x="567.694" y="114.819" width="51.2986" height="45.0172">
    <properties>
     <property name="type" value="florero"/>
    </properties>
@@ -26,7 +28,7 @@
     <property name="type" value="florero"/>
    </properties>
   </object>
-  <object id="43" x="67.5258" y="132.434" width="51.2986" height="45.0172">
+  <object id="43" x="70.6665" y="135.575" width="51.2986" height="45.0172">
    <properties>
     <property name="type" value="florero"/>
    </properties>

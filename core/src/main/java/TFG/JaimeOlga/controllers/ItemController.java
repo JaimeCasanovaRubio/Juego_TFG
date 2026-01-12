@@ -80,6 +80,9 @@ public class ItemController {
                     case "sword":
                         items.add(new Sword(x, y));
                         break;
+                    case "random":
+                        randomItem(x, y);
+                        break;
                     // Añadir más tipos aquí:
                     // case "speedboost":
                     // items.add(new SpeedBoost(x, y, value));
@@ -91,6 +94,26 @@ public class ItemController {
             }
         }
         System.out.println("✓ Cargados " + items.size() + " items.");
+    }
+
+    private void randomItem(float x, float y) {
+        int random = (int) (Math.random() * 100);
+        switch (random) {
+            case 1:
+                items.add(new Coin(x, y, 10));
+                break;
+            case 2:
+                items.add(new Heart(x, y, 1));
+                break;
+            case 3:
+                items.add(new Florero(x, y));
+                break;
+            case 4:
+                items.add(new Sword(x, y));
+                break;
+            default:
+                break;
+        }
     }
 
     /**

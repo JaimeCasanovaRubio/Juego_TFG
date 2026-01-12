@@ -30,7 +30,7 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
-        font.draw(game.batch, "RESTAURANTE ALIENIGENA", 100, 400);
+        font.draw(game.batch, "Oniric Forest", 100, 400);
         font.draw(game.batch, "Pulsa ENTER para jugar", 100, 300);
         game.batch.end();
 
