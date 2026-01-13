@@ -113,7 +113,7 @@ public class SettingsMenu implements Screen {
         btnBack.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.changeScreen(game.lastScreen);
+                game.changeScreen(game.lastPlayScreen);
             }
         });
         mainTable.add(btnBack).width(200).height(50).padTop(30).row();

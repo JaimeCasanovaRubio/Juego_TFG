@@ -30,6 +30,7 @@ public class GameController extends Game {
 
     public Screen currentScreen;
     public Screen lastScreen;
+    public Screen lastPlayScreen;
 
     @Override
     public void create() {
@@ -56,6 +57,10 @@ public class GameController extends Game {
         }
 
         lastScreen = currentScreen;
+        if (screen instanceof OniricForestScreen ||
+                screen instanceof BaseScreen) {
+            lastPlayScreen = screen;
+        }
         currentScreen = screen;
 
         super.setScreen(screen);
