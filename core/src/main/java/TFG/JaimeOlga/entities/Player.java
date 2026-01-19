@@ -36,6 +36,18 @@ public class Player extends Entity {
         loadAnimations();
     }
 
+    public Player() {
+        super();
+        facingRight = true;
+        speed = PLAYER_SPEED;
+
+        float hitboxWidth = 18 * SCALE;
+        float hitboxHeight = 25 * SCALE;
+        float spriteWidth = PLAYER_WIDTH * SCALE;
+        float spriteHeight = PLAYER_HEIGHT * SCALE;
+        initHitbox(hitboxWidth, hitboxHeight, spriteWidth, spriteHeight);
+    }
+
     public void loadAnimations() {
 
         addAnimation(PLAYER_RUN, getSpriteCount(RUN), 0.07f);

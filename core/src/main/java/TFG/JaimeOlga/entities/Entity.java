@@ -49,6 +49,19 @@ public class Entity {
         this.animations = new ArrayList<>();
     }
 
+    public Entity() {
+        this.dead = false;
+        this.maxHealth = 3;
+        this.damage = 1;
+        this.health = maxHealth;
+        this.xPosition = 0;
+        this.yPosition = 0;
+        this.currentAnimation = 0;
+        this.stateTime = 0f;
+        this.textures = new ArrayList<>();
+        this.animations = new ArrayList<>();
+    }
+
     protected void loadAnimations() {
 
     }

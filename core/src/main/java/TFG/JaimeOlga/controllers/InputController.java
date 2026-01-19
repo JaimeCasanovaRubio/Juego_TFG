@@ -38,7 +38,7 @@ public class InputController implements InputProcessor {
         if (keycode == keyBindings.getPause()) {
             if (game.getScreen() == game.oniricForestScreen ||
                     game.getScreen() == game.baseScreen) {
-                game.changeScreen(game.settingsMenu);
+                game.changeScreen(game.settingsMenuInGame);
             }
         }
         return true;

@@ -21,7 +21,7 @@ import TFG.JaimeOlga.GameController;
 
 import static TFG.JaimeOlga.utils.Cons.Images.*;
 
-public class SettingsMenu implements Screen {
+public class SettingsMenuInGame implements Screen {
     private GameController game;
     private OrthographicCamera camera;
     private Viewport viewport;
@@ -33,7 +33,7 @@ public class SettingsMenu implements Screen {
     // Volumen actual (0 a 1)
     private float volumeLevel = 0.5f;
 
-    public SettingsMenu(GameController game) {
+    public SettingsMenuInGame(GameController game) {
         this.game = game;
 
         // Configurar cámara y viewport
@@ -58,6 +58,17 @@ public class SettingsMenu implements Screen {
         Label titleLabel = new Label("AJUSTES", skin);
         titleLabel.setFontScale(2f);
         mainTable.add(titleLabel).padBottom(50).row();
+
+        // --- Botón: Volver a Base ---
+        TextButton btnBase = new TextButton("Volver a Base", skin);
+        btnBase.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setUpGame();
+                game.changeScreen(game.baseScreen);
+            }
+        });
+        mainTable.add(btnBase).width(200).height(50).padBottom(20).row();
 
         // --- Control de Volumen ---
         Label volumeLabel = new Label("Volumen:", skin);

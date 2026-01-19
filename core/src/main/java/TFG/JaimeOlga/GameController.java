@@ -5,10 +5,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import TFG.JaimeOlga.entities.Player;
+import TFG.JaimeOlga.screens.CharacterScreen;
+import TFG.JaimeOlga.screens.CharacterSelectionScreen;
 import TFG.JaimeOlga.screens.ControlsScreen;
 import TFG.JaimeOlga.screens.DeadScreen;
 import TFG.JaimeOlga.screens.MenuScreen;
 import TFG.JaimeOlga.screens.SettingsMenu;
+import TFG.JaimeOlga.screens.SettingsMenuInGame;
 import TFG.JaimeOlga.screens.gameScreens.BaseScreen;
 import TFG.JaimeOlga.screens.gameScreens.OniricForestScreen;
 
@@ -24,9 +27,12 @@ public class GameController extends Game {
     public MenuScreen menuScreen;
     public OniricForestScreen oniricForestScreen;
     public SettingsMenu settingsMenu;
+    public SettingsMenuInGame settingsMenuInGame;
     public BaseScreen baseScreen;
     public DeadScreen deadScreen;
     public ControlsScreen controlsScreen;
+    public CharacterSelectionScreen characterSelectionScreen;
+    public CharacterScreen characterScreen;
 
     public Screen currentScreen;
     public Screen lastScreen;
@@ -36,7 +42,6 @@ public class GameController extends Game {
     public void create() {
 
         batch = new SpriteBatch();
-        player = new Player(200, 300);
 
         setUpGame();
 
@@ -50,7 +55,7 @@ public class GameController extends Game {
     public void changeScreen(Screen screen) {
         // Game.setScreen() llama hide() en la anterior y show() en la nueva
         // NO hace dispose() automáticamente, así que las pantallas se reutilizan
-        if (player.isDead()) {
+        if (player != null && player.isDead()) {
             setUpGame();
             player.setDead(false);
             player.setHealth(player.getMaxHealth());
@@ -68,18 +73,28 @@ public class GameController extends Game {
     }
 
     public void setUpGame() {
+
+        // Pantallas del menu
+        menuScreen = new MenuScreen(this);
+        settingsMenu = new SettingsMenu(this);
+        settingsMenuInGame = new SettingsMenuInGame(this);
+        controlsScreen = new ControlsScreen(this);
+        characterSelectionScreen = new CharacterSelectionScreen(this);
+        characterScreen = new CharacterScreen(this);
+
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+
         // Establecer jugador
         player.setxPosition(200);
         player.setyPosition(300);
         player.setHealth(player.getMaxHealth());
         player.setDead(false);
+    }
 
-        // Pantallas del menu
-        menuScreen = new MenuScreen(this);
-        settingsMenu = new SettingsMenu(this);
-        controlsScreen = new ControlsScreen(this);
-
-        // Pantallas del juego
+    public void setGameScreens() {
         oniricForestScreen = new OniricForestScreen(this, player);
         baseScreen = new BaseScreen(this, player);
         deadScreen = new DeadScreen(this, player);
@@ -98,4 +113,5 @@ public class GameController extends Game {
         if (baseScreen != null)
             baseScreen.dispose();
     }
+
 }
