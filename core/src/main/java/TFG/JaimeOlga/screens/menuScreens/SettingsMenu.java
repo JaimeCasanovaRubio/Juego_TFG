@@ -1,4 +1,4 @@
-package TFG.JaimeOlga.screens;
+package TFG.JaimeOlga.screens.menuScreens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

@@ -1,4 +1,4 @@
-package TFG.JaimeOlga.screens;
+package TFG.JaimeOlga.screens.menuScreens;
 
 import static TFG.JaimeOlga.utils.Cons.Images.GAME_HEIGHT;
 import static TFG.JaimeOlga.utils.Cons.Images.GAME_WIDTH;
@@ -51,7 +51,7 @@ public class DeadScreen implements Screen {
         Table table = new Table();
         table.setFillParent(true);
         Label label = new Label("Has muerto", skin);
-        table.add(label).expandX().padTop(10);
+        table.add(label).expandX().padBottom(10).row();
 
         TextButton button = new TextButton("Volver", skin);
         table.add(button).expandX().padTop(10);

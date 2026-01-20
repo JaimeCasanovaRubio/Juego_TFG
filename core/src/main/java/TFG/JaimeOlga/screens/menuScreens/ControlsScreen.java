@@ -1,4 +1,4 @@
-package TFG.JaimeOlga.screens;
+package TFG.JaimeOlga.screens.menuScreens;
 
 import static TFG.JaimeOlga.utils.Cons.Images.GAME_HEIGHT;
 import static TFG.JaimeOlga.utils.Cons.Images.GAME_WIDTH;

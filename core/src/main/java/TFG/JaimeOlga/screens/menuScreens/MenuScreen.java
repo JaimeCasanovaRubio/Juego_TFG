@@ -1,23 +1,25 @@
-package TFG.JaimeOlga.screens;
-
-import static TFG.JaimeOlga.utils.Cons.Images.GAME_HEIGHT;
-import static TFG.JaimeOlga.utils.Cons.Images.GAME_WIDTH;
+package TFG.JaimeOlga.screens.menuScreens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import TFG.JaimeOlga.GameController;
+
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import TFG.JaimeOlga.GameController;
+import static TFG.JaimeOlga.utils.Cons.Images.*;
 
-public class CharacterScreen implements Screen {
+public class MenuScreen implements Screen {
 
     private GameController game;
     private BitmapFont font;
@@ -26,7 +28,7 @@ public class CharacterScreen implements Screen {
     private Skin skin;
     private Stage stage;
 
-    public CharacterScreen(GameController game) {
+    public MenuScreen(GameController game) {
         this.game = game;
         this.font = new BitmapFont();
         camera = new OrthographicCamera();
@@ -41,15 +43,47 @@ public class CharacterScreen implements Screen {
     }
 
     private void createUI() {
-        Table table = new Table();
-        table.setFillParent(true);
-        table.center();
+        // Crear tabla principal para organizar elementos
+        Table mainTable = new Table();
+        mainTable.setFillParent(true);
+        mainTable.center();
 
-        Label titleLabel = new Label("Selecciona tu personaje", skin);
+        // Título
+        Label titleLabel = new Label("Oniric Forest", skin);
         titleLabel.setFontScale(2f);
-        table.add(titleLabel).colspan(2).padBottom(50).row();
+        mainTable.add(titleLabel).padBottom(50).row();
 
-        stage.addActor(table);
+        // Botón Jugar
+        TextButton playButton = new TextButton("Jugar", skin);
+        playButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.changeScreen(game.characterSelectionScreen);
+            }
+        });
+        mainTable.add(playButton).padBottom(20).row();
+
+        // Botón Personajes
+        TextButton characterButton = new TextButton("Personajes", skin);
+        characterButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.changeScreen(game.characterScreen);
+            }
+        });
+        mainTable.add(characterButton).padBottom(20).row();
+
+        // Botón Ajustes
+        TextButton settingsButton = new TextButton("Ajustes", skin);
+        settingsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.changeScreen(game.settingsMenu);
+            }
+        });
+        mainTable.add(settingsButton).padBottom(20).row();
+
+        stage.addActor(mainTable);
 
     }
 
@@ -76,26 +110,22 @@ public class CharacterScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
-        stage.getViewport().update(width, height, true);
     }
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void hide() {
-
     }
 
     @Override
     public void dispose() {
-
+        font.dispose();
     }
 }

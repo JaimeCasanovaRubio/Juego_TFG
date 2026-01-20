@@ -5,15 +5,16 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import TFG.JaimeOlga.entities.Player;
-import TFG.JaimeOlga.screens.CharacterScreen;
-import TFG.JaimeOlga.screens.CharacterSelectionScreen;
-import TFG.JaimeOlga.screens.ControlsScreen;
-import TFG.JaimeOlga.screens.DeadScreen;
-import TFG.JaimeOlga.screens.MenuScreen;
-import TFG.JaimeOlga.screens.SettingsMenu;
-import TFG.JaimeOlga.screens.SettingsMenuInGame;
+import TFG.JaimeOlga.screens.characterScreens.CharacterScreen;
+import TFG.JaimeOlga.screens.characterScreens.HurtadillaScreen;
 import TFG.JaimeOlga.screens.gameScreens.BaseScreen;
 import TFG.JaimeOlga.screens.gameScreens.OniricForestScreen;
+import TFG.JaimeOlga.screens.menuScreens.CharacterSelectionScreen;
+import TFG.JaimeOlga.screens.menuScreens.ControlsScreen;
+import TFG.JaimeOlga.screens.menuScreens.DeadScreen;
+import TFG.JaimeOlga.screens.menuScreens.MenuScreen;
+import TFG.JaimeOlga.screens.menuScreens.SettingsMenu;
+import TFG.JaimeOlga.screens.menuScreens.SettingsMenuInGame;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all
@@ -33,6 +34,7 @@ public class GameController extends Game {
     public ControlsScreen controlsScreen;
     public CharacterSelectionScreen characterSelectionScreen;
     public CharacterScreen characterScreen;
+    public HurtadillaScreen hurtadillaScreen;
 
     public Screen currentScreen;
     public Screen lastScreen;
@@ -81,6 +83,9 @@ public class GameController extends Game {
         controlsScreen = new ControlsScreen(this);
         characterSelectionScreen = new CharacterSelectionScreen(this);
         characterScreen = new CharacterScreen(this);
+
+        // Pantallas de personajes
+        hurtadillaScreen = new HurtadillaScreen(this);
 
     }
 
