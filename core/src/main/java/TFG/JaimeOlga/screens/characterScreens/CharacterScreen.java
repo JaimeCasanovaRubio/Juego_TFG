@@ -8,7 +8,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -23,7 +22,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import TFG.JaimeOlga.GameController;
-import TFG.JaimeOlga.entities.characters.Hurtadilla;
 
 import static TFG.JaimeOlga.utils.Cons.Images.*;
 
@@ -55,7 +53,7 @@ public class CharacterScreen implements Screen {
         table.setFillParent(true);
         table.center();
 
-        Label titleLabel = new Label("Selecciona tu personaje", skin);
+        Label titleLabel = new Label("Personajes", skin);
         titleLabel.setFontScale(2f);
         table.add(titleLabel).colspan(2).padBottom(50).row();
 

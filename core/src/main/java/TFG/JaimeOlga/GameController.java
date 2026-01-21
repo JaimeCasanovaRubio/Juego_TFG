@@ -81,6 +81,7 @@ public class GameController extends Game {
         settingsMenu = new SettingsMenu(this);
         settingsMenuInGame = new SettingsMenuInGame(this);
         controlsScreen = new ControlsScreen(this);
+        deadScreen = new DeadScreen(this);
         characterSelectionScreen = new CharacterSelectionScreen(this);
         characterScreen = new CharacterScreen(this);
 
@@ -102,7 +103,6 @@ public class GameController extends Game {
     public void setGameScreens() {
         oniricForestScreen = new OniricForestScreen(this, player);
         baseScreen = new BaseScreen(this, player);
-        deadScreen = new DeadScreen(this, player);
     }
 
     @Override

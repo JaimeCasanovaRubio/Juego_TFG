@@ -30,7 +30,6 @@ import TFG.JaimeOlga.entities.characters.Hurtadilla;
 public class CharacterSelectionScreen implements Screen {
 
     private GameController game;
-    private BitmapFont font;
     private OrthographicCamera camera;
     private Viewport viewport;
     private Skin skin;
@@ -39,7 +38,6 @@ public class CharacterSelectionScreen implements Screen {
 
     public CharacterSelectionScreen(GameController game) {
         this.game = game;
-        this.font = new BitmapFont();
         camera = new OrthographicCamera();
         viewport = new FitViewport(GAME_WIDTH, GAME_HEIGHT, camera);
         camera.position.set(GAME_WIDTH / 2f, GAME_HEIGHT / 2f, 0);

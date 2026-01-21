@@ -7,7 +7,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -20,21 +19,18 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import TFG.JaimeOlga.GameController;
 import TFG.JaimeOlga.entities.Player;
-import TFG.JaimeOlga.screens.gameScreens.BaseScreen;
 
 public class DeadScreen implements Screen {
 
     private GameController game;
-    private Player player;
 
     private OrthographicCamera camera;
     private Viewport viewport;
     private Stage stage;
     private Skin skin;
 
-    public DeadScreen(GameController game, Player player) {
+    public DeadScreen(GameController game) {
         this.game = game;
-        this.player = player;
 
         // Configurar cámara y viewport
         camera = new OrthographicCamera();

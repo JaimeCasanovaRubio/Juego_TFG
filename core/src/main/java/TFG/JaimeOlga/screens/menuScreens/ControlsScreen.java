@@ -46,6 +46,7 @@ public class ControlsScreen implements Screen {
     private TextButton btnMoveUp;
     private TextButton btnMoveDown;
     private TextButton btnAttack;
+    private TextButton btnAbility;
 
     public ControlsScreen(GameController game) {
         this.game = game;
@@ -99,6 +100,11 @@ public class ControlsScreen implements Screen {
         btnAttack = new TextButton(KeyBindings.getKeyName(keyBindings.getAttack()), skin);
         btnAttack.addListener(createKeyBindingListener(KeyBindings.KEY_ATTACK, btnAttack));
         mainTable.add(btnAttack).width(100).height(40).padBottom(15).row();
+
+        mainTable.add(new Label("Habilidad:", skin)).padRight(20).padBottom(15);
+        btnAbility = new TextButton(KeyBindings.getKeyName(keyBindings.getAbility()), skin);
+        btnAbility.addListener(createKeyBindingListener(KeyBindings.KEY_ABILITY, btnAbility));
+        mainTable.add(btnAbility).width(100).height(40).padBottom(15).row();
 
         // --- Botón: Restablecer por defecto ---
         TextButton btnReset = new TextButton("Restablecer", skin);

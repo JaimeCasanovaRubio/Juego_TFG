@@ -18,6 +18,7 @@ public class KeyBindings {
     public static final String KEY_MOVE_UP = "move_up";
     public static final String KEY_MOVE_DOWN = "move_down";
     public static final String KEY_ATTACK = "attack";
+    public static final String KEY_ABILITY = "ability";
     public static final String KEY_PAUSE = "pause";
 
     // Valores por defecto
@@ -27,6 +28,7 @@ public class KeyBindings {
     private static final int DEFAULT_MOVE_DOWN = Keys.S;
     private static final int DEFAULT_ATTACK = Keys.J;
     private static final int DEFAULT_PAUSE = Keys.ESCAPE;
+    private static final int DEFAULT_ABILITY = Keys.K;
 
     private static KeyBindings instance;
     private Preferences prefs;
@@ -37,6 +39,7 @@ public class KeyBindings {
     private int moveUp;
     private int moveDown;
     private int attack;
+    private int ability;
     private int pause;
 
     private KeyBindings() {
@@ -61,6 +64,7 @@ public class KeyBindings {
         moveDown = prefs.getInteger(KEY_MOVE_DOWN, DEFAULT_MOVE_DOWN);
         attack = prefs.getInteger(KEY_ATTACK, DEFAULT_ATTACK);
         pause = prefs.getInteger(KEY_PAUSE, DEFAULT_PAUSE);
+        ability = prefs.getInteger(KEY_ABILITY, DEFAULT_ABILITY);
     }
 
     /**
@@ -73,6 +77,7 @@ public class KeyBindings {
         prefs.putInteger(KEY_MOVE_DOWN, moveDown);
         prefs.putInteger(KEY_ATTACK, attack);
         prefs.putInteger(KEY_PAUSE, pause);
+        prefs.putInteger(KEY_ABILITY, ability);
         prefs.flush();
     }
 
@@ -85,6 +90,7 @@ public class KeyBindings {
         moveUp = DEFAULT_MOVE_UP;
         moveDown = DEFAULT_MOVE_DOWN;
         attack = DEFAULT_ATTACK;
+        ability = DEFAULT_ABILITY;
         pause = DEFAULT_PAUSE;
         saveBindings();
     }
@@ -112,6 +118,9 @@ public class KeyBindings {
             case KEY_ATTACK:
                 attack = keycode;
                 break;
+            case KEY_ABILITY:
+                ability = keycode;
+                break;
             case KEY_PAUSE:
                 pause = keycode;
                 break;
@@ -134,6 +143,8 @@ public class KeyBindings {
                 return moveDown;
             case KEY_ATTACK:
                 return attack;
+            case KEY_ABILITY:
+                return ability;
             case KEY_PAUSE:
                 return pause;
             default:
@@ -142,6 +153,10 @@ public class KeyBindings {
     }
 
     // Getters para un acceso rápido
+    public int getAbility() {
+        return ability;
+    }
+
     public int getMoveLeft() {
         return moveLeft;
     }

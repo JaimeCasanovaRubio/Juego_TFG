@@ -13,13 +13,20 @@ import static TFG.JaimeOlga.utils.Cons.Images.*;
 public class Player extends Entity {
 
     // Variables heredadas de Entity: currentAnimation, stateTime, animations, etc.
-    private boolean right, left, up, down;
-    private boolean facingRight = true; // Por defecto mira a la derecha
+    protected boolean right, left, up, down;
+    protected boolean facingRight = true; // Por defecto mira a la derecha
 
-    private boolean attack = false;
-    private float speed;
-    private float hitAnimationTimer = 0; // Tiempo que dura la animación de daño
-    private float attackTimer = 0; // Tiempo que dura la animación de ataque
+    protected boolean attack = false;
+    protected float speed;
+    protected float hitAnimationTimer = 0; // Tiempo que dura la animación de daño
+    protected float attackTimer = 0; // Tiempo que dura la animación de ataque
+
+    protected final float ABILITY_COOLDOWN = 2f;
+    protected final float ABILITY_DURATION = 0.2f;
+    protected float abilityCooldown = 0;
+    protected float abilityTimer = 0;
+    protected boolean ability = false;
+    protected boolean canUseAbility = true;
 
     // Constructor y carga animaciones
     public Player(float xPosition, float yPosition) {
@@ -76,6 +83,20 @@ public class Player extends Entity {
                 attack = false;
             }
         }
+
+        if (abilityCooldown > 0) {
+            abilityCooldown -= deltaTime;
+            if (abilityCooldown <= 0) {
+                canUseAbility = true;
+            }
+        }
+        if (ability) {
+            abilityTimer -= deltaTime;
+            if (abilityTimer <= 0) {
+                ability = false;
+            }
+        }
+
         // Actualizar temporizador de animación de daño
         if (hitAnimationTimer > 0) {
             hitAnimationTimer -= deltaTime;
@@ -87,6 +108,7 @@ public class Player extends Entity {
                 invincible = false;
             }
         }
+
         updateAnimation();
         updatePosition(collisionManager);
         stateTime += deltaTime;
@@ -108,6 +130,10 @@ public class Player extends Entity {
             setAnimation(2);
             return; // Importante: no continuar para que no se sobrescriba
         }
+        if (ability) {
+            setAnimation(4);
+            return;
+        }
         if (right || left) {
             setAnimation(0);
         } else if (up) {
@@ -122,23 +148,42 @@ public class Player extends Entity {
     @Override
     public void updatePosition(CollisionManager collisionManager) {
         // --- MOVEMENT HORIZONTAL ---
-        float nextX = xPosition;
-        if (right) {
-            nextX += speed;
-            facingRight = true;
-        }
-        if (left) {
-            nextX -= speed;
-            facingRight = false;
-        }
-        float nextY = yPosition;
-        if (up) {
-            nextY += speed;
-        }
-        if (down) {
-            nextY -= speed;
-        }
 
+        float nextX = xPosition;
+        float nextY = yPosition;
+
+        if (ability) {
+            System.out.println("Ability");
+            if (right) {
+                nextX += 2 * speed;
+                facingRight = true;
+            }
+            if (left) {
+                nextX -= 2 * speed;
+                facingRight = false;
+            }
+            if (up) {
+                nextY += 2 * speed;
+            }
+            if (down) {
+                nextY -= 2 * speed;
+            }
+        } else {
+            if (right) {
+                nextX += speed;
+                facingRight = true;
+            }
+            if (left) {
+                nextX -= speed;
+                facingRight = false;
+            }
+            if (up) {
+                nextY += speed;
+            }
+            if (down) {
+                nextY -= speed;
+            }
+        }
         // Si no hay sistema de colisiones o hitbox, mover directamente
         if (collisionManager == null || hitbox == null) {
             xPosition = nextX;
@@ -209,11 +254,33 @@ public class Player extends Entity {
         }
     }
 
-    public void dispose() {
-
+    public void activateAbility() {
+        if (canUseAbility) {
+            ability = true;
+            canUseAbility = false;
+            abilityCooldown = ABILITY_COOLDOWN;
+            abilityTimer = ABILITY_DURATION;
+            stateTime = 0f; // Reiniciar la animación desde el principio
+        }
     }
 
     // Getters y setters Exclusivos
+
+    public float getAbilityCooldown() {
+        return abilityCooldown;
+    }
+
+    public void setAbilityCooldown(float abilityCooldown) {
+        this.abilityCooldown = abilityCooldown;
+    }
+
+    public boolean isAbility() {
+        return ability;
+    }
+
+    public void setAbility(boolean ability) {
+        this.ability = ability;
+    }
 
     public boolean isRight() {
         return right;

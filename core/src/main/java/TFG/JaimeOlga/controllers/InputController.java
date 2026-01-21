@@ -31,6 +31,8 @@ public class InputController implements InputProcessor {
             player.setDown(true);
         } else if (keycode == keyBindings.getAttack()) {
             player.attack(); // Inicia el ataque con su timer
+        } else if (keycode == keyBindings.getAbility()) {
+            player.activateAbility();
         } else if (keycode == Keys.F3) {
             debugMode = !debugMode;
             System.out.println("Debug mode: " + (debugMode ? "ON" : "OFF"));
@@ -41,6 +43,7 @@ public class InputController implements InputProcessor {
                 game.changeScreen(game.settingsMenuInGame);
             }
         }
+
         return true;
     }
 
