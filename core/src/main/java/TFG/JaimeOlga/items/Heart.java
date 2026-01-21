@@ -33,16 +33,4 @@ public class Heart extends Item {
         player.heal(healAmount);
         System.out.println("💖 +1 vida");
     }
-
-    @Override
-    public void applyEffect(GameController game) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'applyEffect'");
-    }
-
-    @Override
-    public void applyEffect(GameController game, Player player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'applyEffect'");
-    }
 }

@@ -15,14 +15,15 @@ public class Player extends Entity {
     // Variables heredadas de Entity: currentAnimation, stateTime, animations, etc.
     protected boolean right, left, up, down;
     protected boolean facingRight = true; // Por defecto mira a la derecha
+    protected String lastDirection = "right";
 
     protected boolean attack = false;
     protected float speed;
     protected float hitAnimationTimer = 0; // Tiempo que dura la animación de daño
     protected float attackTimer = 0; // Tiempo que dura la animación de ataque
 
-    protected final float ABILITY_COOLDOWN = 2f;
-    protected final float ABILITY_DURATION = 0.2f;
+    protected final float ABILITY_COOLDOWN = 1f;
+    protected final float ABILITY_DURATION = 0.1f;
     protected float abilityCooldown = 0;
     protected float abilityTimer = 0;
     protected boolean ability = false;
@@ -153,34 +154,39 @@ public class Player extends Entity {
         float nextY = yPosition;
 
         if (ability) {
-            System.out.println("Ability");
-            if (right) {
-                nextX += 2 * speed;
-                facingRight = true;
-            }
-            if (left) {
-                nextX -= 2 * speed;
-                facingRight = false;
-            }
-            if (up) {
-                nextY += 2 * speed;
-            }
-            if (down) {
-                nextY -= 2 * speed;
+            switch (lastDirection) {
+                case "right":
+                    nextX += 4 * speed;
+                    facingRight = false;
+                    break;
+                case "left":
+                    nextX -= 4 * speed;
+                    facingRight = true;
+                    break;
+                case "up":
+                    nextY += 4 * speed;
+                    break;
+                case "down":
+                    nextY -= 4 * speed;
+                    break;
             }
         } else {
             if (right) {
                 nextX += speed;
+                lastDirection = "right";
                 facingRight = true;
             }
             if (left) {
                 nextX -= speed;
+                lastDirection = "left";
                 facingRight = false;
             }
             if (up) {
+                lastDirection = "up";
                 nextY += speed;
             }
             if (down) {
+                lastDirection = "down";
                 nextY -= speed;
             }
         }
@@ -268,6 +274,10 @@ public class Player extends Entity {
 
     public float getAbilityCooldown() {
         return abilityCooldown;
+    }
+
+    public float getMaxAbilityCooldown() {
+        return ABILITY_COOLDOWN;
     }
 
     public void setAbilityCooldown(float abilityCooldown) {

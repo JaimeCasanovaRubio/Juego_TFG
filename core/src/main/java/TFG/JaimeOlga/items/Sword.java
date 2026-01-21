@@ -22,13 +22,4 @@ public class Sword extends Item {
         player.setDamage(2);
     }
 
-    @Override
-    public void applyEffect(GameController game) {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void applyEffect(GameController game, Player player) {
-        // TODO Auto-generated method stub
-    }
 }

@@ -53,15 +53,18 @@ public abstract class Item {
      * Aplica el efecto del item al jugador.
      * Cada tipo de item implementa su propio efecto.
      */
-    public abstract void applyEffect(Player player);
+    public void applyEffect(Player player) {
+    }
 
     /**
      * Aplica el efecto del item al juego, como para cambiar mapa o pantalla.
      * Cada tipo de item implementa su propio efecto.
      */
-    public abstract void applyEffect(GameController game);
+    public void applyEffect(GameController game) {
+    }
 
-    public abstract void applyEffect(GameController game, Player player);
+    public void applyEffect(GameController game, Player player) {
+    }
 
     /**
      * Llamado cuando el jugador colisiona con el item.
