@@ -59,7 +59,7 @@ configure(subprojects) {
 
 subprojects {
   version = "$projectVersion"
-  ext.appName = 'Oniric Quest'
+  ext.appName = 'Unknoted'
   repositories {
     mavenCentral()
     // You may want to remove the following line if you have errors downloading dependencies.
@@ -69,4 +69,4 @@ subprojects {
   }
 }
 
-eclipse.project.name = 'TFG' + '-parent'
+eclipse.project.name = 'Unknoted' + '-parent'
