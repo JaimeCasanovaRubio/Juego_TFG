@@ -4,7 +4,6 @@ import static TFG.JaimeOlga.utils.Cons.Images.GAME_HEIGHT;
 import static TFG.JaimeOlga.utils.Cons.Images.GAME_WIDTH;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;

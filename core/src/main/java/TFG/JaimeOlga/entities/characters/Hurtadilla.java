@@ -5,7 +5,6 @@ import static TFG.JaimeOlga.utils.Cons.Images.*;
 import TFG.JaimeOlga.entities.Player;
 
 public class Hurtadilla extends Player {
-    private final float ABILITY_COOLDOWN = 2f;
 
     public Hurtadilla(float xPosition, float yPosition) {
         super(xPosition, yPosition);

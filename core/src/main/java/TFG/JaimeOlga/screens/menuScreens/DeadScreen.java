@@ -18,7 +18,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import TFG.JaimeOlga.GameController;
-import TFG.JaimeOlga.entities.Player;
 
 public class DeadScreen implements Screen {
 
