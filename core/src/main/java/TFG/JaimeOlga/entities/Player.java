@@ -22,12 +22,17 @@ public class Player extends Entity {
     protected float hitAnimationTimer = 0; // Tiempo que dura la animación de daño
     protected float attackTimer = 0; // Tiempo que dura la animación de ataque
 
-    protected final float ABILITY_COOLDOWN = 1f;
-    protected final float ABILITY_DURATION = 0.1f;
+    protected float ABILITY_COOLDOWN = 1f;
+    protected float ABILITY_DURATION = 0.1f;
     protected float abilityCooldown = 0;
     protected float abilityTimer = 0;
-    protected boolean ability = false;
+    protected boolean abilityActive = false;
     protected boolean canUseAbility = true;
+
+    // Para habilidades que afectan al movimiento (como dash)
+    protected boolean abilityAffectsMovement = false;
+    protected float abilityMoveX = 0;
+    protected float abilityMoveY = 0;
 
     // Constructor y carga animaciones
     public Player(float xPosition, float yPosition) {
@@ -91,10 +96,13 @@ public class Player extends Entity {
                 canUseAbility = true;
             }
         }
-        if (ability) {
+        if (abilityActive) {
             abilityTimer -= deltaTime;
+            onAbilityUpdate(deltaTime); // Permite lógica adicional mientras la habilidad está activa
             if (abilityTimer <= 0) {
-                ability = false;
+                abilityActive = false;
+                abilityAffectsMovement = false;
+                onAbilityEnd(); // Callback cuando termina la habilidad
             }
         }
 
@@ -131,7 +139,7 @@ public class Player extends Entity {
             setAnimation(2);
             return; // Importante: no continuar para que no se sobrescriba
         }
-        if (ability) {
+        if (abilityActive) {
             setAnimation(4);
             return;
         }
@@ -148,29 +156,16 @@ public class Player extends Entity {
 
     @Override
     public void updatePosition(CollisionManager collisionManager) {
-        // --- MOVEMENT HORIZONTAL ---
-
+        // --- MOVEMENT ---
         float nextX = xPosition;
         float nextY = yPosition;
 
-        if (ability) {
-            switch (lastDirection) {
-                case "right":
-                    nextX += 4 * speed;
-                    facingRight = false;
-                    break;
-                case "left":
-                    nextX -= 4 * speed;
-                    facingRight = true;
-                    break;
-                case "up":
-                    nextY += 4 * speed;
-                    break;
-                case "down":
-                    nextY -= 4 * speed;
-                    break;
-            }
-        } else {
+        if (abilityActive && abilityAffectsMovement) {
+            // Habilidad que afecta al movimiento (como dash)
+            nextX += abilityMoveX;
+            nextY += abilityMoveY;
+        } else if (!abilityActive) {
+            // Movimiento normal (solo si la habilidad no está activa)
             if (right) {
                 nextX += speed;
                 lastDirection = "right";
@@ -190,6 +185,7 @@ public class Player extends Entity {
                 nextY -= speed;
             }
         }
+
         // Si no hay sistema de colisiones o hitbox, mover directamente
         if (collisionManager == null || hitbox == null) {
             xPosition = nextX;
@@ -211,6 +207,38 @@ public class Player extends Entity {
 
         // Sincronizar hitbox con posición final
         updateHitbox();
+    }
+
+    /**
+     * Ejecuta la habilidad especial del personaje.
+     * Las clases hijas DEBEN sobrescribir este método para definir su propia
+     * habilidad.
+     * Se llama UNA VEZ cuando se activa la habilidad.
+     * 
+     * Ejemplos de lo que puede hacer:
+     * - Movimiento (dash): setear abilityAffectsMovement = true y abilityMoveX/Y
+     * - Curación: llamar a heal(amount)
+     * - Escudo: activar invincible = true
+     * - Disparo: crear un proyectil
+     */
+    protected void executeAbility() {
+        // Implementación por defecto: no hace nada
+    }
+
+    /**
+     * Llamado cada frame mientras la habilidad está activa.
+     * Útil para efectos continuos durante la duración de la habilidad.
+     */
+    protected void onAbilityUpdate(float deltaTime) {
+        // Por defecto: no hace nada
+    }
+
+    /**
+     * Llamado cuando la habilidad termina.
+     * Útil para limpiar efectos temporales.
+     */
+    protected void onAbilityEnd() {
+        // Por defecto: no hace nada
     }
 
     public void draw(SpriteBatch batch) {
@@ -262,11 +290,12 @@ public class Player extends Entity {
 
     public void activateAbility() {
         if (canUseAbility) {
-            ability = true;
+            abilityActive = true;
             canUseAbility = false;
             abilityCooldown = ABILITY_COOLDOWN;
             abilityTimer = ABILITY_DURATION;
             stateTime = 0f; // Reiniciar la animación desde el principio
+            executeAbility(); // Ejecutar la habilidad específica del personaje
         }
     }
 
@@ -284,12 +313,12 @@ public class Player extends Entity {
         this.abilityCooldown = abilityCooldown;
     }
 
-    public boolean isAbility() {
-        return ability;
+    public boolean isAbilityActive() {
+        return abilityActive;
     }
 
-    public void setAbility(boolean ability) {
-        this.ability = ability;
+    public void setAbilityActive(boolean abilityActive) {
+        this.abilityActive = abilityActive;
     }
 
     public boolean isRight() {

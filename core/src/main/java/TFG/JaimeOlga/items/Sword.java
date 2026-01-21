@@ -3,7 +3,6 @@ package TFG.JaimeOlga.items;
 import com.badlogic.gdx.graphics.Texture;
 import static TFG.JaimeOlga.utils.Cons.Images.*;
 
-import TFG.JaimeOlga.GameController;
 import TFG.JaimeOlga.entities.Player;
 
 public class Sword extends Item {
@@ -19,7 +18,7 @@ public class Sword extends Item {
 
     @Override
     public void applyEffect(Player player) {
-        player.setDamage(2);
+        player.setDamage(player.getDamage() + 1);
     }
 
 }

@@ -2,7 +2,6 @@ package TFG.JaimeOlga.items;
 
 import com.badlogic.gdx.graphics.Texture;
 
-import TFG.JaimeOlga.GameController;
 import TFG.JaimeOlga.entities.Player;
 
 /**
