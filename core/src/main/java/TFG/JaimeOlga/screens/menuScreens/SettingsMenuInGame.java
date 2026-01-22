@@ -1,54 +1,29 @@
 package TFG.JaimeOlga.screens.menuScreens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import TFG.JaimeOlga.GameController;
 
-import static TFG.JaimeOlga.utils.Cons.Images.*;
-
-public class SettingsMenuInGame implements Screen {
-    private GameController game;
-    private OrthographicCamera camera;
-    private Viewport viewport;
-
-    // Scene2D
-    private Stage stage;
-    private Skin skin;
+public class SettingsMenuInGame extends MenuScreenModel {
 
     // Volumen actual (0 a 1)
     private float volumeLevel = 0.5f;
 
     public SettingsMenuInGame(GameController game) {
-        this.game = game;
-
-        // Configurar cámara y viewport
-        camera = new OrthographicCamera();
-        viewport = new FitViewport(GAME_WIDTH, GAME_HEIGHT, camera);
-        camera.position.set(GAME_WIDTH / 2f, GAME_HEIGHT / 2f, 0);
-
-        // Crear Stage y cargar Skin
-        stage = new Stage(viewport, game.batch);
-        skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
-
+        super(game);
         createUI();
     }
 
-    private void createUI() {
+    @Override
+    protected void createUI() {
         // Crear tabla principal para organizar elementos
         Table mainTable = new Table();
         mainTable.setFillParent(true);
@@ -132,51 +107,5 @@ public class SettingsMenuInGame implements Screen {
 
         // Añadir tabla al stage
         stage.addActor(mainTable);
-    }
-
-    @Override
-    public void show() {
-        // Registrar el Stage como InputProcessor para que reciba eventos de
-        // mouse/teclado
-        Gdx.input.setInputProcessor(stage);
-    }
-
-    @Override
-    public void render(float delta) {
-        // Limpiar pantalla con color oscuro
-        Gdx.gl.glClearColor(0.1f, 0.1f, 0.15f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        camera.update();
-
-        // Actualizar y dibujar el Stage (todos los widgets)
-        stage.act(delta);
-        stage.draw();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        viewport.update(width, height);
-        stage.getViewport().update(width, height, true);
-    }
-
-    @Override
-    public void pause() {
-    }
-
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void hide() {
-        // Limpiar el InputProcessor cuando salimos de esta pantalla
-        Gdx.input.setInputProcessor(null);
-    }
-
-    @Override
-    public void dispose() {
-        stage.dispose();
-        skin.dispose();
     }
 }

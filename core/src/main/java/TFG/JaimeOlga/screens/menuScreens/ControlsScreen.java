@@ -1,37 +1,19 @@
 package TFG.JaimeOlga.screens.menuScreens;
 
-import static TFG.JaimeOlga.utils.Cons.Images.GAME_HEIGHT;
-import static TFG.JaimeOlga.utils.Cons.Images.GAME_WIDTH;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import TFG.JaimeOlga.GameController;
 import TFG.JaimeOlga.utils.KeyBindings;
 
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
+public class ControlsScreen extends MenuScreenModel {
 
-public class ControlsScreen implements Screen {
-
-    private GameController game;
-    private OrthographicCamera camera;
-    private Viewport viewport;
-
-    // Scene2D
-    private Stage stage;
-    private Skin skin;
     private KeyBindings keyBindings;
 
     // Para capturar la siguiente tecla
@@ -48,22 +30,13 @@ public class ControlsScreen implements Screen {
     private TextButton btnAbility;
 
     public ControlsScreen(GameController game) {
-        this.game = game;
+        super(game);
         this.keyBindings = KeyBindings.getInstance();
-
-        // Configurar cámara y viewport
-        camera = new OrthographicCamera();
-        viewport = new FitViewport(GAME_WIDTH, GAME_HEIGHT, camera);
-        camera.position.set(GAME_WIDTH / 2f, GAME_HEIGHT / 2f, 0);
-
-        // Crear Stage y cargar Skin
-        stage = new Stage(viewport, game.batch);
-        skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
-
         createUI();
     }
 
-    private void createUI() {
+    @Override
+    protected void createUI() {
         // Crear tabla principal para organizar elementos
         Table mainTable = new Table();
         mainTable.setFillParent(true);
@@ -150,6 +123,7 @@ public class ControlsScreen implements Screen {
         btnMoveUp.setText(KeyBindings.getKeyName(keyBindings.getMoveUp()));
         btnMoveDown.setText(KeyBindings.getKeyName(keyBindings.getMoveDown()));
         btnAttack.setText(KeyBindings.getKeyName(keyBindings.getAttack()));
+        btnAbility.setText(KeyBindings.getKeyName(keyBindings.getAbility()));
     }
 
     @Override
@@ -183,40 +157,5 @@ public class ControlsScreen implements Screen {
 
         // Actualizar etiquetas por si los controles cambiaron
         updateButtonLabels();
-    }
-
-    @Override
-    public void render(float delta) {
-        // Limpiar pantalla con color oscuro
-        Gdx.gl.glClearColor(0.1f, 0.1f, 0.15f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        camera.update();
-
-        // Actualizar y dibujar el Stage (todos los widgets)
-        stage.act(delta);
-        stage.draw();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        viewport.update(width, height);
-        stage.getViewport().update(width, height, true);
-    }
-
-    @Override
-    public void pause() {
-    }
-
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void hide() {
-    }
-
-    @Override
-    public void dispose() {
     }
 }

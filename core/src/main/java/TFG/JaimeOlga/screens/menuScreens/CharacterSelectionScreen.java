@@ -1,54 +1,32 @@
 package TFG.JaimeOlga.screens.menuScreens;
 
-import static TFG.JaimeOlga.utils.Cons.Images.GAME_HEIGHT;
-import static TFG.JaimeOlga.utils.Cons.Images.GAME_WIDTH;
+import static TFG.JaimeOlga.utils.Cons.Images.PLAYER_IDLE;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-
-import static TFG.JaimeOlga.utils.Cons.Images.PLAYER_IDLE;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import TFG.JaimeOlga.GameController;
 import TFG.JaimeOlga.entities.characters.Hurtadilla;
 
-public class CharacterSelectionScreen implements Screen {
+public class CharacterSelectionScreen extends MenuScreenModel {
 
-    private GameController game;
-    private OrthographicCamera camera;
-    private Viewport viewport;
-    private Skin skin;
-    private Stage stage;
     private Texture playerTexture;
 
     public CharacterSelectionScreen(GameController game) {
-        this.game = game;
-        camera = new OrthographicCamera();
-        viewport = new FitViewport(GAME_WIDTH, GAME_HEIGHT, camera);
-        camera.position.set(GAME_WIDTH / 2f, GAME_HEIGHT / 2f, 0);
-
-        // Crear Stage y Skin
-        stage = new Stage(viewport, game.batch);
-        skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
+        super(game);
         createUI();
-
     }
 
-    private void createUI() {
+    @Override
+    protected void createUI() {
         Table table = new Table();
         table.setFillParent(true);
         table.center();
@@ -106,55 +84,13 @@ public class CharacterSelectionScreen implements Screen {
         table.add(btnBack).width(200).height(50).padTop(30).row();
 
         stage.addActor(table);
-
-    }
-
-    @Override
-    public void show() {
-        // Registrar el Stage como InputProcessor para que reciba eventos de
-        // mouse/teclado
-        Gdx.input.setInputProcessor(stage);
-    }
-
-    @Override
-    public void render(float delta) {
-        // Limpiar pantalla con color oscuro
-        Gdx.gl.glClearColor(0.1f, 0.1f, 0.15f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        camera.update();
-
-        // Actualizar y dibujar el Stage (todos los widgets)
-        stage.act(delta);
-        stage.draw();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        viewport.update(width, height);
-        stage.getViewport().update(width, height, true);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
     }
 
     @Override
     public void dispose() {
+        super.dispose();
         if (playerTexture != null) {
             playerTexture.dispose();
         }
-
     }
 }
